@@ -334,10 +334,7 @@ func (a *Args) Decode(decoder scale.Decoder) error {
 	return nil
 }
 
-type Justification struct {
-	ConsensusEngineID    ConsensusEngineID
-	EncodedJustification Bytes
-}
+type Justification [2][]byte
 
 type Justifications []Justification
 
