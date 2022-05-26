@@ -339,8 +339,19 @@ type Justification struct {
 	EncodedJustification Bytes
 }
 
-// TODO: unmarshal this [2][]byte into Justification
-type Justifications [][2][]byte
+func (j *Justification)  UnmarshalJSON(data []byte) error {
+	var d  []interface{}
+	if err := json.Unmarshal(data, &d); err != nil {
+		return err
+	}
+
+	j.ConsensusEngineID = d[0].(ConsensusEngineID)
+	j.EncodedJustification = d[1].(Bytes)
+
+	return nil
+}
+
+type Justifications []Justification
 
 type SignaturePayload struct {
 	Address        Address

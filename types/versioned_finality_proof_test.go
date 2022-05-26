@@ -20,10 +20,10 @@ func TestVersionedFinalityProof_Decoding(t *testing.T) {
 	require.NoError(t, err)
 
 	for _, v := range block.Justifications {
-		if bytes.Equal(v[0][:], []byte("BEEF")) {
+		if bytes.Equal(v.ConsensusEngineID[:], []byte("BEEF")) {
 			versionedFinalityProof := &types.VersionedFinalityProof{}
 
-			err = types.DecodeFromBytes(v[1], versionedFinalityProof)
+			err = types.DecodeFromBytes(v.EncodedJustification, versionedFinalityProof)
 			require.NoError(t, err)
 			t.Logf("%v", versionedFinalityProof.AsCompactSignedCommitment.Unpack())
 		}
