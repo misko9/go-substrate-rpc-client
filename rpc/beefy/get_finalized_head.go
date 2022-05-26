@@ -1,4 +1,4 @@
-// Go Substrate RPC Client (GSRPC) provides APIs and types around Polkadot and any Substrate-based chain RPC calls
+// Go Substrate RPC Client (GSRPC) provides APIs and types around Polkadot and any Substrate-based beefy RPC calls
 //
 // Copyright 2019 Centrifuge GmbH
 //
@@ -14,15 +14,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package types
+package beefy
 
-type SignedBlock struct {
-	Block          Block          `json:"block"`
-	Justifications Justifications `json:"justifications"`
-}
+import (
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+)
 
-// Block encoded with header and extrinsics
-type Block struct {
-	Header     Header
-	Extrinsics []Extrinsic
+// GetFinalizedHead returns the hash of the last finalized block in the canon beefy
+func (c *Beefy) GetFinalizedHead() (types.Hash, error) {
+	var res string
+
+	err := c.client.Call(&res, "beefy_getFinalizedHead")
+	if err != nil {
+		return types.Hash{}, err
+	}
+
+	return types.NewHashFromHexString(res)
 }
