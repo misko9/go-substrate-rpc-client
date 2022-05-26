@@ -340,13 +340,16 @@ type Justification struct {
 }
 
 func (j *Justification)  UnmarshalJSON(data []byte) error {
-	var d  []interface{}
+	var d  [2][]byte
 	if err := json.Unmarshal(data, &d); err != nil {
 		return err
 	}
 
-	j.ConsensusEngineID = d[0].(ConsensusEngineID)
-	j.EncodedJustification = d[1].(Bytes)
+	var id [4]byte
+	copy(id[:], d[0])
+	
+	j.ConsensusEngineID = id
+	j.EncodedJustification = d[1]
 
 	return nil
 }
