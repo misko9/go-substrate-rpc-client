@@ -334,9 +334,13 @@ func (a *Args) Decode(decoder scale.Decoder) error {
 	return nil
 }
 
-type Justification [2][]byte
+type Justification struct {
+	ConsensusEngineID    ConsensusEngineID
+	EncodedJustification Bytes
+}
 
-type Justifications []Justification
+// TODO: unmarshal this [2][]byte into Justification
+type Justifications [][2][]byte
 
 type SignaturePayload struct {
 	Address        Address
