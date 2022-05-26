@@ -22,7 +22,7 @@ import (
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
 )
 
-// DigestItem specifies the item in the logs of a digest
+// VersionedFinalityProof is a wrapper around the CompactSignedCommitment to indicate versioning
 type VersionedFinalityProof struct {
 	IsCompactSignedCommitment bool // 1
 	AsCompactSignedCommitment CompactSignedCommitment
