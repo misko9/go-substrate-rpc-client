@@ -21,10 +21,16 @@ lint:				## run linters on go code
 	@docker run -v `pwd`:/app -w /app golangci/golangci-lint:v1.36.0 golangci-lint run
 
 lint_no_docker:
-	@golangci-lint run
+	which golangci-lint || ( \
+		make install_tooling \
+	)
+	@golangci-lint run --timeout=3m
 
 lint-fix: 			## run linters on go code and automatically fixes issues
 	@docker run -v `pwd`:/app -w /app golangci/golangci-lint:v1.36.0 golangci-lint run --fix
+
+install_tooling: ## Install linters
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.39.0
 
 test: 				## run all tests in project against the RPC URL specified in the RPC_URL env variable or localhost while excluding gethrpc
 	@go test -race -count=1 `go list ./... | grep -v '/gethrpc'`
