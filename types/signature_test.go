@@ -24,6 +24,9 @@ import (
 
 func TestSignature_EncodeDecode(t *testing.T) {
 	assertRoundtrip(t, NewSignature(hash64))
+	assertRoundTripFuzz[Signature](t, 100)
+	assertDecodeNilData[Signature](t)
+	assertEncodeEmptyObj[Signature](t, 64)
 }
 
 func TestSignature_EncodedLength(t *testing.T) {
@@ -46,6 +49,8 @@ func TestSignature_Hex(t *testing.T) {
 	assertEncodeToHex(t, []encodeToHexAssert{
 		{NewSignature(hash64), "0x01020304050607080900010203040506070809000102030405060708090001020304050607080900010203040506070809000102030405060708090001020304"}, //nolint:lll
 	})
+
+	assertEqual(t, "0x01020304050607080900010203040506070809000102030405060708090001020304050607080900010203040506070809000102030405060708090001020304", NewSignature(hash64).Hex())
 }
 
 func TestSignature_String(t *testing.T) {
@@ -59,5 +64,51 @@ func TestSignature_Eq(t *testing.T) {
 		{NewSignature(hash64), NewSignature(hash64), true},
 		{NewSignature(hash64), NewBytes(hash64), false},
 		{NewSignature(hash64), NewBool(false), false},
+	})
+}
+
+func TestEcdsaSignature_EncodeDecode(t *testing.T) {
+	assertRoundtrip(t, NewEcdsaSignature(hash65))
+	assertRoundTripFuzz[EcdsaSignature](t, 100)
+	assertDecodeNilData[EcdsaSignature](t)
+	assertEncodeEmptyObj[EcdsaSignature](t, 65)
+}
+
+func TestEcdsaSignature_EncodedLength(t *testing.T) {
+	assertEncodedLength(t, []encodedLengthAssert{{NewEcdsaSignature(hash65), 65}})
+}
+
+func TestEcdsaSignature_Encode(t *testing.T) {
+	assertEncode(t, []encodingAssert{
+		{NewEcdsaSignature(hash65), MustHexDecodeString("0x0102030405060708090001020304050607080900010203040506070809000102030405060708090001020304050607080900010203040506070809000102030405")}, //nolint:lll
+	})
+}
+
+func TestEcdsaSignature_Hash(t *testing.T) {
+	assertHash(t, []hashAssert{
+		{NewEcdsaSignature(hash65), MustHexDecodeString("0x6149c91c60d1e3789ff09916fce05f2bb7a2af74b45824173072cac546d0f580")},
+	})
+}
+
+func TestEcdsaSignature_Hex(t *testing.T) {
+	assertEncodeToHex(t, []encodeToHexAssert{
+		{NewEcdsaSignature(hash65), "0x0102030405060708090001020304050607080900010203040506070809000102030405060708090001020304050607080900010203040506070809000102030405"}, //nolint:lll
+	})
+
+	assertEqual(t, "0x0102030405060708090001020304050607080900010203040506070809000102030405060708090001020304050607080900010203040506070809000102030405", NewEcdsaSignature(hash65).Hex())
+
+}
+
+func TestEcdsaSignature_String(t *testing.T) {
+	assertString(t, []stringAssert{
+		{NewEcdsaSignature(hash65), "[1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5]"}, //nolint:lll
+	})
+}
+
+func TestEcdsaSignature_Eq(t *testing.T) {
+	assertEq(t, []eqAssert{
+		{NewEcdsaSignature(hash65), NewEcdsaSignature(hash65), true},
+		{NewEcdsaSignature(hash65), NewBytes(hash65), false},
+		{NewEcdsaSignature(hash65), NewBool(false), false},
 	})
 }

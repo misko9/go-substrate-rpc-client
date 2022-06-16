@@ -4,27 +4,15 @@ import (
 	"encoding/json"
 )
 
-// GenerateMmrProofResponse contains the generate proof rpc response
-type GenerateMmrProofResponse struct {
+// GenerateMMRProofResponse contains the generate proof rpc response
+type GenerateMMRProofResponse struct {
 	BlockHash H256
-	Leaf      MmrLeaf
-	Proof     MmrProof
-}
-
-// GenerateMmrBatchProofResponse contains the generate batch proof rpc response
-type GenerateMmrBatchProofResponse struct {
-	BlockHash H256
-	Leaves    []MmrLeaf
-	Proof     MmrBatchProof
-}
-
-type OpaqueLeafWithIndex struct {
-	Leaf  []byte
-	Index uint64
+	Leaf      MMRLeaf
+	Proof     MMRProof
 }
 
 // UnmarshalJSON fills u with the JSON encoded byte array given by b
-func (d *GenerateMmrProofResponse) UnmarshalJSON(bz []byte) error {
+func (d *GenerateMMRProofResponse) UnmarshalJSON(bz []byte) error {
 	var tmp struct {
 		BlockHash string `json:"blockHash"`
 		Leaf      string `json:"leaf"`
@@ -33,65 +21,30 @@ func (d *GenerateMmrProofResponse) UnmarshalJSON(bz []byte) error {
 	if err := json.Unmarshal(bz, &tmp); err != nil {
 		return err
 	}
-	err := DecodeFromHexString(tmp.BlockHash, &d.BlockHash)
+	err := DecodeFromHex(tmp.BlockHash, &d.BlockHash)
 	if err != nil {
 		return err
 	}
 	var encodedLeaf MMREncodableOpaqueLeaf
-	err = DecodeFromHexString(tmp.Leaf, &encodedLeaf)
+	err = DecodeFromHex(tmp.Leaf, &encodedLeaf)
 	if err != nil {
 		return err
 	}
-	err = DecodeFromBytes(encodedLeaf, &d.Leaf)
+	err = Decode(encodedLeaf, &d.Leaf)
 	if err != nil {
 		return err
 	}
-	err = DecodeFromHexString(tmp.Proof, &d.Proof)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// UnmarshalJSON fills u with the JSON encoded byte array given by b
-func (d *GenerateMmrBatchProofResponse) UnmarshalJSON(bz []byte) error {
-	var tmp struct {
-		BlockHash string `json:"blockHash"`
-		Leaves    string `json:"leaves"`
-		Proof     string `json:"proof"`
-	}
-	if err := json.Unmarshal(bz, &tmp); err != nil {
-		return err
-	}
-	err := DecodeFromHexString(tmp.BlockHash, &d.BlockHash)
-	if err != nil {
-		return err
-	}
-
-	var opaqueLeaves [][]byte
-	err = DecodeFromHexString(tmp.Leaves, &opaqueLeaves)
-	if err != nil {
-		return err
-	}
-	for _, leaf := range opaqueLeaves {
-		var mmrLeaf MmrLeaf
-		err := DecodeFromBytes(leaf, &mmrLeaf)
-		if err != nil {
-			return err
-		}
-		d.Leaves = append(d.Leaves, mmrLeaf)
-	}
-	err = DecodeFromHexString(tmp.Proof, &d.Proof)
+	err = DecodeFromHex(tmp.Proof, &d.Proof)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-type MMREncodableOpaqueLeaf []byte
+type MMREncodableOpaqueLeaf Bytes
 
-// MmrProof is a MMR proof
-type MmrProof struct {
+// MMRProof is a MMR proof
+type MMRProof struct {
 	// The index of the leaf the proof is for.
 	LeafIndex U64
 	// Number of leaves in MMR, when the proof was generated.
@@ -100,35 +53,25 @@ type MmrProof struct {
 	Items []H256
 }
 
-// MmrProof is a MMR proof
-type MmrBatchProof struct {
-	// The index of the leaf the proof is for.
-	LeafIndex []U64
-	// Number of leaves in MMR, when the proof was generated.
-	LeafCount U64
-	// Proof elements (hashes of siblings of inner nodes on the path to the leaf).
-	Items []H256
-}
-
-type MmrLeaf struct {
-	Version               uint8
+type MMRLeaf struct {
+	Version               MMRLeafVersion
 	ParentNumberAndHash   ParentNumberAndHash
 	BeefyNextAuthoritySet BeefyNextAuthoritySet
-	ParachainHeads        [32]byte
+	ParachainHeads        H256
 }
 
 type MMRLeafVersion U8
 
 type ParentNumberAndHash struct {
-	ParentNumber uint32
-	Hash         [32]byte
+	ParentNumber U32
+	Hash         Hash
 }
 
 type BeefyNextAuthoritySet struct {
 	// ID
-	ID uint64
+	ID U64
 	// Number of validators in the set.
-	Len uint32
+	Len U32
 	// Merkle Root Hash build from BEEFY uncompressed AuthorityIds.
-	Root [32]byte
+	Root H256
 }
