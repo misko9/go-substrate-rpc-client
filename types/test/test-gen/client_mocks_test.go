@@ -20,12 +20,12 @@ import (
 	"context"
 	"testing"
 
-	rpc "github.com/centrifuge/go-substrate-rpc-client/v4/gethrpc"
+	rpc "github.com/ComposableFi/go-substrate-rpc-client/v4/gethrpc"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc/state"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/state"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc/chain"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/chain"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 	"github.com/stretchr/testify/mock"
 )
 

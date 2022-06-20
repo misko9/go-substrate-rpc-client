@@ -28,36 +28,36 @@ type OptionElectionCompute struct {
 }
 
 func NewOptionElectionCompute(value ElectionCompute) OptionElectionCompute {
-	return OptionElectionCompute{option{hasValue: true}, value}
+	return OptionElectionCompute{option{HasValue: true}, value}
 }
 
 func NewOptionElectionComputeEmpty() OptionElectionCompute {
-	return OptionElectionCompute{option: option{hasValue: false}}
+	return OptionElectionCompute{option: option{HasValue: false}}
 }
 
 func (o OptionElectionCompute) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 func (o *OptionElectionCompute) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 // SetSome sets a value
 func (o *OptionElectionCompute) SetSome(value ElectionCompute) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 // SetNone removes a value and marks it as missing
 func (o *OptionElectionCompute) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = ElectionCompute(byte(0))
 }
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o *OptionElectionCompute) Unwrap() (ok bool, value ElectionCompute) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 type ElectionCompute byte

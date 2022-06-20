@@ -16,7 +16,7 @@
 
 package types
 
-import "github.com/centrifuge/go-substrate-rpc-client/v4/scale"
+import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
 
 type OptionAccountID struct {
 	option
@@ -24,36 +24,36 @@ type OptionAccountID struct {
 }
 
 func NewOptionAccountID(value AccountID) OptionAccountID {
-	return OptionAccountID{option{hasValue: true}, value}
+	return OptionAccountID{option{HasValue: true}, value}
 }
 
 func NewOptionAccountIDEmpty() OptionAccountID {
-	return OptionAccountID{option: option{hasValue: false}}
+	return OptionAccountID{option: option{HasValue: false}}
 }
 
 func (o *OptionAccountID) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 func (o OptionAccountID) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 // SetSome sets a value
 func (o *OptionAccountID) SetSome(value AccountID) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 // SetNone removes a value and marks it as missing
 func (o *OptionAccountID) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = AccountID{}
 }
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o *OptionAccountID) Unwrap() (ok bool, value AccountID) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 // AccountID represents a public key (an 32 byte array)

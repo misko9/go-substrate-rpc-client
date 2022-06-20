@@ -16,7 +16,7 @@
 
 package types
 
-import "github.com/centrifuge/go-substrate-rpc-client/v4/scale"
+import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
 
 type OptionMultiLocationV1 struct {
 	option
@@ -24,36 +24,36 @@ type OptionMultiLocationV1 struct {
 }
 
 func NewOptionMultiLocationV1(value MultiLocationV1) OptionMultiLocationV1 {
-	return OptionMultiLocationV1{option{hasValue: true}, value}
+	return OptionMultiLocationV1{option{HasValue: true}, value}
 }
 
 func NewOptionMultiLocationV1Empty() OptionMultiLocationV1 {
-	return OptionMultiLocationV1{option: option{hasValue: false}}
+	return OptionMultiLocationV1{option: option{HasValue: false}}
 }
 
 func (o *OptionMultiLocationV1) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 func (o OptionMultiLocationV1) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 // SetSome sets a value
 func (o *OptionMultiLocationV1) SetSome(value MultiLocationV1) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 // SetNone removes a value and marks it as missing
 func (o *OptionMultiLocationV1) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = MultiLocationV1{}
 }
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o *OptionMultiLocationV1) Unwrap() (ok bool, value MultiLocationV1) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 type MultiLocationV1 struct {

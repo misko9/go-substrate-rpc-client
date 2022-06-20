@@ -16,7 +16,7 @@
 
 package types
 
-import "github.com/centrifuge/go-substrate-rpc-client/v4/scale"
+import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
 
 type OptionExecutionResult struct {
 	option
@@ -24,36 +24,36 @@ type OptionExecutionResult struct {
 }
 
 func NewOptionExecutionResult(value ExecutionResult) OptionExecutionResult {
-	return OptionExecutionResult{option{hasValue: true}, value}
+	return OptionExecutionResult{option{HasValue: true}, value}
 }
 
 func NewOptionExecutionResultEmpty() OptionExecutionResult {
-	return OptionExecutionResult{option: option{hasValue: false}}
+	return OptionExecutionResult{option: option{HasValue: false}}
 }
 
 func (o *OptionExecutionResult) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 func (o OptionExecutionResult) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 // SetSome sets a value
 func (o *OptionExecutionResult) SetSome(value ExecutionResult) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 // SetNone removes a value and marks it as missing
 func (o *OptionExecutionResult) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = ExecutionResult{}
 }
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o *OptionExecutionResult) Unwrap() (ok bool, value ExecutionResult) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 type ExecutionResult struct {

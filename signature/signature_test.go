@@ -28,7 +28,7 @@ func TestDecodeSubstrateMessage(t *testing.T) {
 	compactCommitment := types.CompactSignedCommitment{}
 
 	// attempt to decode the SignedCommitments
-	err := types.DecodeFromHexString(hex, &compactCommitment)
+	err := types.DecodeFromHex(hex, &compactCommitment)
 	require.NoError(t, err)
 
 	signedCommitment := compactCommitment.Unpack()

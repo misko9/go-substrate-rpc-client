@@ -72,28 +72,28 @@ func NewOptionBeefySignatureEmpty() OptionBeefySignature {
 }
 
 func (o OptionBeefySignature) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 func (o *OptionBeefySignature) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 // SetSome sets a value
 func (o *OptionBeefySignature) SetSome(value BeefySignature) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 // SetNone removes a value and marks it as missing
 func (o *OptionBeefySignature) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = BeefySignature{}
 }
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o OptionBeefySignature) Unwrap() (ok bool, value BeefySignature) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 // bits are packed into chunks of this size
@@ -197,23 +197,23 @@ func (s *SignedCommitment) UnmarshalText(text []byte) error {
 }
 
 func (o OptionalSignedCommitment) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 func (o *OptionalSignedCommitment) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 func (o OptionalSignedCommitment) Unwrap() (ok bool, value SignedCommitment) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 func (o *OptionalSignedCommitment) SetSome(value SignedCommitment) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 func (o *OptionalSignedCommitment) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = SignedCommitment{}
 }

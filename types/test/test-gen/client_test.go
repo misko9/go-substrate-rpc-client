@@ -27,10 +27,10 @@ import (
 	"testing"
 	"time"
 
-	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v4"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/rpcmocksrv"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpcmocksrv"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 	"github.com/stretchr/testify/assert"
 )
 
