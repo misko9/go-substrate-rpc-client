@@ -27,6 +27,7 @@ const (
 	queryPacketCommitmentMethod          = "ibc_queryPacketCommitment"
 	queryPacketAcknowledgementMethod     = "ibc_queryPacketAcknowledgement"
 	queryPacketReceiptMethod             = "ibc_queryPacketReceipt"
+	queryNewlyCreatedClientsMethod       = "ibc_queryNewlyCreatedClients"
 )
 
 // IBC exposes methods for retrieval of chain data

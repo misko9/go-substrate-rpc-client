@@ -25,6 +25,12 @@ import (
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
 )
 
+type Head []byte
+
+type HeadData struct {
+	Head
+}
+
 type Header struct {
 	ParentHash     Hash        `json:"parentHash"`
 	Number         BlockNumber `json:"number"`
