@@ -22,7 +22,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/vedhavyas/go-subkey"
+	subkey "github.com/vedhavyas/go-subkey"
 	"github.com/vedhavyas/go-subkey/sr25519"
 
 	"golang.org/x/crypto/blake2b"
