@@ -1,6 +1,6 @@
 // Go Substrate RPC Client (GSRPC) provides APIs and types around Polkadot and any Substrate-based chain RPC calls
 //
-// Copyright 2019 Centrifuge GmbH
+// Copyright 2022 Snowfork
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,17 +21,17 @@ import (
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 )
 
-// QueryStorageAt ...
-func (s *State) QueryStorageAt(keys []types.StorageKey, block types.Hash) ([]types.StorageChangeSet, error) {
+// QueryStorageAt performs a low-level storage query
+func (s *state) QueryStorageAt(keys []types.StorageKey, block types.Hash) ([]types.StorageChangeSet, error) {
 	return s.queryStorageAt(keys, &block)
 }
 
-// QueryStorageAtLatest ...
-func (s *State) QueryStorageAtLatest(keys []types.StorageKey) ([]types.StorageChangeSet, error) {
+// QueryStorageAtLatest performs a low-level storage query
+func (s *state) QueryStorageAtLatest(keys []types.StorageKey) ([]types.StorageChangeSet, error) {
 	return s.queryStorageAt(keys, nil)
 }
 
-func (s *State) queryStorageAt(keys []types.StorageKey, block *types.Hash) ([]types.StorageChangeSet, error) {
+func (s *state) queryStorageAt(keys []types.StorageKey, block *types.Hash) ([]types.StorageChangeSet, error) {
 	hexKeys := make([]string, len(keys))
 	for i, key := range keys {
 		hexKeys[i] = key.Hex()

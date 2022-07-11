@@ -14,26 +14,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:generate mockery --name MMR --filename mmr.go
-
-package mmr
+package state
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
+	"testing"
+
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/stretchr/testify/assert"
 )
 
-// MMR exposes methods for retrieval of MMR data
-type MMR interface {
-	GenerateProof(leafIndex uint64, blockHash types.Hash) (types.GenerateMMRProofResponse, error)
-	GenerateProofLatest(leafIndex uint64) (types.GenerateMMRProofResponse, error)
+func TestState_QueryStorageAtLatest(t *testing.T) {
+	key := types.NewStorageKey(types.MustHexDecodeString(mockSrv.storageKeyHex))
+	data, err := testState.QueryStorageAtLatest([]types.StorageKey{key})
+	assert.NoError(t, err)
+	assert.Equal(t, mockSrv.storageChangeSets, data)
 }
 
-type mmr struct {
-	client client.Client
-}
-
-// NewMMR creates a new MMR struct
-func NewMMR(c client.Client) MMR {
-	return &mmr{client: c}
+func TestState_QueryStorageAt(t *testing.T) {
+	key := types.NewStorageKey(types.MustHexDecodeString(mockSrv.storageKeyHex))
+	hash := types.NewHash(types.MustHexDecodeString("0xdd1816b6f6889f46e23b0d6750bc441af9dad0fda8bae90677c1708d01035fbe"))
+	data, err := testState.QueryStorageAt([]types.StorageKey{key}, hash)
+	assert.NoError(t, err)
+	assert.Equal(t, mockSrv.storageChangeSets, data)
 }
