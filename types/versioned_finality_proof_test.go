@@ -23,7 +23,7 @@ func TestVersionedFinalityProof_Decoding(t *testing.T) {
 		if bytes.Equal(v.ConsensusEngineID[:], []byte("BEEF")) {
 			versionedFinalityProof := &types.VersionedFinalityProof{}
 
-			err = types.DecodeFromBytes(v.EncodedJustification, versionedFinalityProof)
+			err = types.Decode(v.EncodedJustification, versionedFinalityProof)
 			require.NoError(t, err)
 			t.Logf("%v", versionedFinalityProof.AsCompactSignedCommitment.Unpack())
 		}

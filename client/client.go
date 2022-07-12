@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:generate mockery --name Client
+
 package client
 
 import (
@@ -75,8 +77,8 @@ func CallWithBlockHash(c Client, target interface{}, method string, blockHash *t
 	if err != nil {
 		return err
 	}
-	hargs := append(args, hexHash)
-	err = c.Call(target, method, hargs...)
+	args = append(args, hexHash)
+	err = c.Call(target, method, args...)
 	if err != nil {
 		return err
 	}

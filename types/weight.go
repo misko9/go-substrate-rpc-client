@@ -16,10 +16,59 @@
 
 package types
 
+import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+
+type OptionWeight struct {
+	option
+	value Weight
+}
+
 // Weight is a numeric range of a transaction weight
 type Weight uint64
 
 // NewWeight creates a new Weight type
 func NewWeight(u uint64) Weight {
 	return Weight(u)
+}
+
+func NewOptionWeight(value Weight) OptionWeight {
+	return OptionWeight{
+		option: option{
+			HasValue: true,
+		},
+		value: value,
+	}
+}
+
+func NewOptionWeightEmpty() OptionWeight {
+	return OptionWeight{
+		option: option{
+			HasValue: false,
+		},
+	}
+}
+
+func (o OptionWeight) Encode(encoder scale.Encoder) error {
+	return encoder.EncodeOption(o.HasValue, o.value)
+}
+
+func (o *OptionWeight) Decode(decoder scale.Decoder) error {
+	return decoder.DecodeOption(&o.HasValue, &o.value)
+}
+
+// SetSome sets a value
+func (o *OptionWeight) SetSome(value Weight) {
+	o.HasValue = true
+	o.value = value
+}
+
+// SetNone removes a value and marks it as missing
+func (o *OptionWeight) SetNone() {
+	o.HasValue = false
+	o.value = Weight(0)
+}
+
+// Unwrap returns a flag that indicates whether a value is present and the stored value
+func (o *OptionWeight) Unwrap() (ok bool, value Weight) {
+	return o.HasValue, o.value
 }
