@@ -21,8 +21,8 @@ package author
 import (
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-
 )
+
 type Author interface {
 	SubmitAndWatchExtrinsic(xt types.Extrinsic) (*ExtrinsicStatusSubscription, error)
 	PendingExtrinsics() ([]types.Extrinsic, error)

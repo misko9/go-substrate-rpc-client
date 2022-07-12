@@ -64,7 +64,6 @@ func (cs *CompactSignedCommitment) Unpack() SignedCommitment {
 			count++
 		} else {
 			sigs = append(sigs, OptionBeefySignature{option: option{false}})
-
 		}
 	}
 
