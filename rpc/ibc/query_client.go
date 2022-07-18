@@ -1,6 +1,7 @@
 package ibc
 
 import (
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 )
 
@@ -70,6 +71,20 @@ func (i IBC) QueryClients() (
 	err := i.client.Call(&res, queryClientsMethod)
 	if err != nil {
 		return clienttypes.IdentifiedClientStates{}, err
+	}
+	return res, nil
+}
+
+func (i IBC) QueryNewlyCreatedClients(
+	blockHash types.H256,
+) (
+	[]clienttypes.IdentifiedClientState,
+	error,
+) {
+	var res []clienttypes.IdentifiedClientState
+	err := i.client.Call(&res, queryNewlyCreatedClients)
+	if err != nil {
+		return []clienttypes.IdentifiedClientState{}, err
 	}
 	return res, nil
 }

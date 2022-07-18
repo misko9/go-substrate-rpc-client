@@ -4,6 +4,21 @@ import (
 	chantypes "github.com/cosmos/ibc-go/v3/modules/core/04-channel/types"
 )
 
+func (i IBC) QueryAcknowledgements(
+	height uint64,
+	channelid,
+	portid string) (
+	[][]byte,
+	error,
+) {
+	var res [][]byte
+	err := i.client.Call(&res, queryAcknowledgements, height, channelid, portid)
+	if err != nil {
+		return [][]byte{}, err
+	}
+	return res, nil
+}
+
 func (i IBC) QueryPackets(
 	channelid,
 	portid string,
