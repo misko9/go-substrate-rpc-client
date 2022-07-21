@@ -1,6 +1,9 @@
 package ibc
 
-import "github.com/ComposableFi/go-substrate-rpc-client/v4/client"
+import (
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
+	sdktypes "github.com/cosmos/cosmos-sdk/codec/types"
+)
 
 const (
 	queryBalanceWithAddressMethod        = "ibc_queryBalanceWithAddress"
@@ -38,4 +41,18 @@ type IBC struct {
 // NewIBC creates a new IBC struct
 func NewIBC(cl client.Client) *IBC {
 	return &IBC{cl}
+}
+
+// TODO: these custom Any and Client types need to be kept somewhere cleaner
+type Any struct {
+	TypeUrl string `protobuf:"bytes,1,opt,name=type_url,json=typeUrl,proto3" json:"type_url,omitempty"`
+	// Must be a valid serialized protocol buffer of the above specified type.
+	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func parseAny(any *Any) *sdktypes.Any {
+	return &sdktypes.Any{
+		TypeUrl: any.TypeUrl,
+		Value: any.Value,
+	}
 }

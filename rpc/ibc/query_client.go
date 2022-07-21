@@ -9,15 +9,15 @@ func (i IBC) QueryClientStateResponse(
 	height int64,
 	srcClientID string,
 ) (
-	*clienttypes.QueryClientStateResponse,
+	clienttypes.QueryClientStateResponse,
 	error,
 ) {
-	var res *clienttypes.QueryClientStateResponse
+	var res QueryClientStateResponse
 	err := i.client.Call(&res, queryClientStateMethod, height, srcClientID)
 	if err != nil {
-		return &clienttypes.QueryClientStateResponse{}, err
+		return clienttypes.QueryClientStateResponse{}, err
 	}
-	return res, nil
+	return parseQueryClientStateResponse(res), nil
 }
 
 func (i IBC) QueryClientConsensusState(
@@ -67,22 +67,22 @@ func (i IBC) QueryClients() (
 	clienttypes.IdentifiedClientStates,
 	error,
 ) {
-	var res clienttypes.IdentifiedClientStates
+	var res IdentifiedClientStates
 	err := i.client.Call(&res, queryClientsMethod)
 	if err != nil {
 		return clienttypes.IdentifiedClientStates{}, err
 	}
-	return res, nil
+	return parseIdentifiedClientStates(res), nil
 }
 
 func (i IBC) QueryNewlyCreatedClients(blockHash types.Hash) (
 	clienttypes.IdentifiedClientStates,
 	error,
 ) {
-	var res clienttypes.IdentifiedClientStates
+	var res IdentifiedClientStates
 	err := i.client.Call(&res, queryNewlyCreatedClientsMethod, blockHash)
 	if err != nil {
-		return res, err
+		return nil, err
 	}
-	return res, nil
+	return parseIdentifiedClientStates(res), nil
 }
