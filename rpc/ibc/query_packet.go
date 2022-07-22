@@ -12,7 +12,7 @@ func (i IBC) QueryAcknowledgements(
 	error,
 ) {
 	var res [][]byte
-	err := i.client.Call(&res, queryAcknowledgements, height, channelid, portid)
+	err := i.client.Call(&res, queryAcknowledgementsMethod, height, channelid, portid)
 	if err != nil {
 		return [][]byte{}, err
 	}

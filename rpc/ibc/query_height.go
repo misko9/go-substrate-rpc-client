@@ -5,7 +5,7 @@ func (i IBC) QueryLatestHeight() (
 	error,
 ) {
 	var res uint64
-	err := i.client.Call(&res, queryLatestHeight)
+	err := i.client.Call(&res, queryLatestHeightMethod)
 	if err != nil {
 		return 0, err
 	}

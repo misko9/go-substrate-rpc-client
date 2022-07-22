@@ -68,7 +68,8 @@ func (i IBC) QueryClients() (
 	error,
 ) {
 	var res clienttypes.IdentifiedClientStates
-	err := i.client.Call(&res, queryClientsMethod)
+	var x interface{}
+	err := i.client.Call(&x, queryClientsMethod)
 	if err != nil {
 		return clienttypes.IdentifiedClientStates{}, err
 	}
@@ -82,7 +83,7 @@ func (i IBC) QueryNewlyCreatedClients(
 	error,
 ) {
 	var res []clienttypes.IdentifiedClientState
-	err := i.client.Call(&res, queryNewlyCreatedClients)
+	err := i.client.Call(&res, queryNewlyCreatedClientsMethod)
 	if err != nil {
 		return []clienttypes.IdentifiedClientState{}, err
 	}

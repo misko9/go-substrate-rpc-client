@@ -11,7 +11,7 @@ func (i IBC) GenerateConnectionHandshakeProof(
 	error,
 ) {
 	var res types.ConnHandshakeProof
-	err := i.client.Call(&res, generateConnectionHandshakeProof)
+	err := i.client.Call(&res, generateConnectionHandshakeProofMethod)
 	if err != nil {
 		return types.ConnHandshakeProof{}, err
 	}
