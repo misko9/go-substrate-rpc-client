@@ -17,7 +17,7 @@ func (i IBC) QueryClientStateResponse(
 	if err != nil {
 		return clienttypes.QueryClientStateResponse{}, err
 	}
-	return parseQueryClientStateResponse(res), nil
+	return parseQueryClientStateResponse(res)
 }
 
 func (i IBC) QueryClientConsensusState(
@@ -72,7 +72,7 @@ func (i IBC) QueryClients() (
 	if err != nil {
 		return clienttypes.IdentifiedClientStates{}, err
 	}
-	return parseIdentifiedClientStates(res), nil
+	return parseIdentifiedClientStates(res)
 }
 
 func (i IBC) QueryNewlyCreatedClients(blockHash types.Hash) (
@@ -84,5 +84,5 @@ func (i IBC) QueryNewlyCreatedClients(blockHash types.Hash) (
 	if err != nil {
 		return nil, err
 	}
-	return parseIdentifiedClientStates(res), nil
+	return parseIdentifiedClientStates(res)
 }
