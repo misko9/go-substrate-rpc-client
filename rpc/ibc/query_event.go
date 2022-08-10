@@ -5,10 +5,10 @@ import "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 func (i IBC) QueryIbcEvents(
 	blockNumbers []types.BlockNumberOrHash,
 ) (
-	map[string][]interface{},
+	types.IBCEventsQueryResult,
 	error,
 ) {
-	var res map[string][]interface{}
+	var res types.IBCEventsQueryResult
 	err := i.client.Call(&res, queryIbcEventsMethod, blockNumbers)
 	if err != nil {
 		return res, err
