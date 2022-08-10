@@ -18,3 +18,10 @@ type ConnHandshakeProof struct {
 	// Proof height
 	Height types.Height
 }
+
+type BlockNumberOrHash struct {
+	Hash   *string `json:"hash,omitempty"`
+	Number uint32  `json:"number,omitempty"`
+}
+
+type IBCEventsQueryResult []map[string]interface{}
