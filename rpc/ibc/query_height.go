@@ -1,11 +1,13 @@
 package ibc
 
-func (i IBC) QueryLatestHeight() (
+import "context"
+
+func (i IBC) QueryLatestHeight(ctx context.Context) (
 	uint64,
 	error,
 ) {
 	var res uint64
-	err := i.client.Call(&res, queryLatestHeightMethod)
+	err := i.client.CallContext(ctx, &res, queryLatestHeightMethod)
 	if err != nil {
 		return 0, err
 	}

@@ -1,10 +1,13 @@
 package ibc
 
 import (
-	conntypes "github.com/cosmos/ibc-go/v3/modules/core/03-connection/types"
+	"context"
+
+	conntypes "github.com/cosmos/ibc-go/v5/modules/core/03-connection/types"
 )
 
 func (i IBC) QueryConnection(
+	ctx context.Context,
 	height int64,
 	connectionID string,
 ) (
@@ -12,19 +15,19 @@ func (i IBC) QueryConnection(
 	error,
 ) {
 	var res *conntypes.QueryConnectionResponse
-	err := i.client.Call(&res, queryConnectionMethod, height, connectionID)
+	err := i.client.CallContext(ctx, &res, queryConnectionMethod, height, connectionID)
 	if err != nil {
 		return &conntypes.QueryConnectionResponse{}, err
 	}
 	return res, nil
 }
 
-func (i IBC) QueryConnections() (
+func (i IBC) QueryConnections(ctx context.Context) (
 	*conntypes.QueryConnectionsResponse,
 	error,
 ) {
 	var res *conntypes.QueryConnectionsResponse
-	err := i.client.Call(&res, queryConnectionsMethod)
+	err := i.client.CallContext(ctx, &res, queryConnectionsMethod)
 	if err != nil {
 		return &conntypes.QueryConnectionsResponse{}, err
 	}
@@ -32,6 +35,7 @@ func (i IBC) QueryConnections() (
 }
 
 func (i IBC) QueryConnectionsUsingClient(
+	ctx context.Context,
 	height int64,
 	clientid string,
 ) (
@@ -39,7 +43,7 @@ func (i IBC) QueryConnectionsUsingClient(
 	error,
 ) {
 	var res *conntypes.QueryConnectionsResponse
-	err := i.client.Call(&res, queryConnectionUsingClientMethod, height, clientid)
+	err := i.client.CallContext(ctx, &res, queryConnectionUsingClientMethod, height, clientid)
 	if err != nil {
 		return &conntypes.QueryConnectionsResponse{}, err
 	}

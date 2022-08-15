@@ -32,6 +32,10 @@ type Client interface {
 	// args must be encoded in the format RPC understands
 	Call(result interface{}, method string, args ...interface{}) error
 
+	// Call Contxt makes the call to RPC method with the provided args and ctx
+	// args must be encoded in the format RPC understands
+	CallContext(ctx context.Context, result interface{}, method string, args ...interface{}) error
+
 	Subscribe(ctx context.Context, namespace, subscribeMethodSuffix, unsubscribeMethodSuffix,
 		notificationMethodSuffix string, channel interface{}, args ...interface{}) (
 		*gethrpc.ClientSubscription, error)

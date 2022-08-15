@@ -1,8 +1,13 @@
 package ibc
 
-import "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+import (
+	"context"
+
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+)
 
 func (i IBC) GenerateConnectionHandshakeProof(
+	ctx context.Context,
 	height uint32,
 	clientId string,
 	connId string,
@@ -11,7 +16,7 @@ func (i IBC) GenerateConnectionHandshakeProof(
 	error,
 ) {
 	var res types.ConnHandshakeProof
-	err := i.client.Call(&res, generateConnectionHandshakeProofMethod)
+	err := i.client.CallContext(ctx, &res, generateConnectionHandshakeProofMethod)
 	if err != nil {
 		return types.ConnHandshakeProof{}, err
 	}

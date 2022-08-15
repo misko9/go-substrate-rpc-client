@@ -1,6 +1,7 @@
 package ibc_test
 
 import (
+	"context"
 	"encoding/hex"
 	"encoding/json"
 	"testing"
@@ -14,7 +15,7 @@ import (
 func TestQueryIBCEvents(t *testing.T) {
 	cl, err := client.NewSubstrateAPI(config.Default().RPCURL)
 	require.NoError(t, err)
-	events, err := cl.RPC.IBC.QueryIbcEvents([]types.BlockNumberOrHash{{Number: 1}, {Number: 2}})
+	events, err := cl.RPC.IBC.QueryIbcEvents(context.Background(), []types.BlockNumberOrHash{{Number: 1}, {Number: 2}})
 	require.NoError(t, err)
 	require.Equal(t, map[string][]interface{}{}, events)
 }

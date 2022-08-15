@@ -1,17 +1,20 @@
 package ibc
 
 import (
-	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
+	"context"
+
+	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 )
 
 func (i IBC) QueryConsensusState(
+	ctx context.Context,
 	height uint32,
 ) (
 	*clienttypes.QueryConsensusStateResponse,
 	error,
 ) {
 	var res *clienttypes.QueryConsensusStateResponse
-	err := i.client.Call(&res, queryConsensusStateMethod, height)
+	err := i.client.CallContext(ctx, &res, queryConsensusStateMethod, height)
 	if err != nil {
 		return &clienttypes.QueryConsensusStateResponse{}, err
 	}
