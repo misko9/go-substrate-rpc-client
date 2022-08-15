@@ -300,6 +300,12 @@ func (c *Client) CallContext(ctx context.Context, result interface{}, method str
 	case len(resp.Result) == 0:
 		return ErrNoResult
 	default:
+		j, err := json.Marshal(&resp.Result)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println("pure json: " + string(j))
+
 		return json.Unmarshal(resp.Result, &result)
 	}
 }
