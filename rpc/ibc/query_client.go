@@ -1,8 +1,6 @@
 package ibc
 
 import (
-	"context"
-
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 )
@@ -12,15 +10,16 @@ func (i IBC) QueryClientStateResponse(
 	height int64,
 	srcClientID string,
 ) (
-	*clienttypes.QueryClientStateResponse,
+	clienttypes.QueryClientStateResponse,
 	error,
 ) {
-	var res *clienttypes.QueryClientStateResponse
+
+  var res *clienttypes.QueryClientStateResponse
 	err := i.client.CallContext(ctx, &res, queryClientStateMethod, height, srcClientID)
 	if err != nil {
-		return &clienttypes.QueryClientStateResponse{}, err
+		return clienttypes.QueryClientStateResponse{}, err
 	}
-	return res, nil
+	return parseQueryClientStateResponse(res)
 }
 
 func (i IBC) QueryClientConsensusState(
@@ -75,13 +74,25 @@ func (i IBC) QueryClients(ctx context.Context) (
 	clienttypes.IdentifiedClientStates,
 	error,
 ) {
-	var res clienttypes.IdentifiedClientStates
-	var x interface{}
-	err := i.client.CallContext(ctx, &x, queryClientsMethod)
+
+	var res IdentifiedClientStates
+	err := i.client.CallContext(ctx, &res, queryClientsMethod)
 	if err != nil {
 		return clienttypes.IdentifiedClientStates{}, err
 	}
-	return res, nil
+	return parseIdentifiedClientStates(res)
+}
+
+func (i IBC) QueryNewlyCreatedClients(blockHash types.Hash) (
+	clienttypes.IdentifiedClientStates,
+	error,
+) {
+	var res IdentifiedClientStates
+	err := i.client.Call(&res, queryNewlyCreatedClientsMethod, blockHash)
+	if err != nil {
+		return nil, err
+	}
+	return parseIdentifiedClientStates(res)
 }
 
 func (i IBC) QueryNewlyCreatedClients(

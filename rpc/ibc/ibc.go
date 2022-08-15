@@ -1,6 +1,10 @@
 package ibc
 
-import "github.com/ComposableFi/go-substrate-rpc-client/v4/client"
+import (
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
+	sdktypes "github.com/cosmos/cosmos-sdk/codec/types"
+	prototypes "github.com/gogo/protobuf/types"
+)
 
 const (
 	generateConnectionHandshakeProofMethod = "ibc_generateConnectionHandshakeProof"
@@ -43,4 +47,18 @@ type IBC struct {
 // NewIBC creates a new IBC struct
 func NewIBC(cl client.Client) *IBC {
 	return &IBC{cl}
+}
+
+func parseAny(any *prototypes.Any) (*sdktypes.Any, error) {
+	message, err := prototypes.EmptyAny(any)
+	if err != nil {
+		return nil, err
+	}
+
+	err = prototypes.UnmarshalAny(any, message)
+	if err != nil {
+		return nil, err
+	}
+
+	return sdktypes.NewAnyWithValue(message)
 }
