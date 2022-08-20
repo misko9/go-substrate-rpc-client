@@ -27,6 +27,11 @@ func (c *mmr) GenerateProof(leafIndex uint64, blockHash types.Hash) (types.Gener
 	return c.generateProof(leafIndex, &blockHash)
 }
 
+// GenerateBatchProof retrieves an MMR Batch proof and leaves for the specified leave indeces, at the given blockHash
+func (c *mmr) GenerateBatchProof(indeces []uint64, blockHash types.Hash) (types.GenerateMmrBatchProofResponse, error) {
+	return c.generateBatchProof(indeces, &blockHash)
+}
+
 // GenerateProofLatest retrieves the latest MMR proof and leaf for the specified leave index
 func (c *mmr) GenerateProofLatest(leafIndex uint64) (types.GenerateMMRProofResponse, error) {
 	return c.generateProof(leafIndex, nil)
@@ -37,6 +42,16 @@ func (c *mmr) generateProof(leafIndex uint64, blockHash *types.Hash) (types.Gene
 	err := client.CallWithBlockHash(c.client, &res, "mmr_generateProof", blockHash, leafIndex)
 	if err != nil {
 		return types.GenerateMMRProofResponse{}, err
+	}
+
+	return res, nil
+}
+
+func (c *mmr) generateBatchProof(indeces []uint64, blockHash *types.Hash) (types.GenerateMmrBatchProofResponse, error) {
+	var res types.GenerateMmrBatchProofResponse
+	err := client.CallWithBlockHash(c.client, &res, "mmr_generateBatchProof", blockHash, indeces)
+	if err != nil {
+		return types.GenerateMmrBatchProofResponse{}, err
 	}
 
 	return res, nil

@@ -26,6 +26,7 @@ import (
 // MMR exposes methods for retrieval of MMR data
 type MMR interface {
 	GenerateProof(leafIndex uint64, blockHash types.Hash) (types.GenerateMMRProofResponse, error)
+	GenerateBatchProof(indices []uint64, blockHash types.Hash) (types.GenerateMmrBatchProofResponse, error)
 	GenerateProofLatest(leafIndex uint64) (types.GenerateMMRProofResponse, error)
 }
 

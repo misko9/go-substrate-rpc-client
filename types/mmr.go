@@ -11,6 +11,13 @@ type GenerateMMRProofResponse struct {
 	Proof     MMRProof
 }
 
+// GenerateMmrBatchProofResponse contains the generate batch proof rpc response
+type GenerateMmrBatchProofResponse struct {
+	BlockHash H256
+	Leaves    []MMRLeaf
+	Proof     MmrBatchProof
+}
+
 // UnmarshalJSON fills u with the JSON encoded byte array given by b
 func (d *GenerateMMRProofResponse) UnmarshalJSON(bz []byte) error {
 	var tmp struct {
@@ -51,6 +58,51 @@ type MMRProof struct {
 	LeafCount U64
 	// Proof elements (hashes of siblings of inner nodes on the path to the leaf).
 	Items []H256
+}
+
+// MmrProof is a MMR proof
+type MmrBatchProof struct {
+	// The index of the leaf the proof is for.
+	LeafIndex []U64
+	// Number of leaves in MMR, when the proof was generated.
+	LeafCount U64
+	// Proof elements (hashes of siblings of inner nodes on the path to the leaf).
+	Items []H256
+}
+
+// UnmarshalJSON fills u with the JSON encoded byte array given by b
+func (d *GenerateMmrBatchProofResponse) UnmarshalJSON(bz []byte) error {
+	var tmp struct {
+		BlockHash string `json:"blockHash"`
+		Leaves    string `json:"leaves"`
+		Proof     string `json:"proof"`
+	}
+	if err := json.Unmarshal(bz, &tmp); err != nil {
+		return err
+	}
+	err := DecodeFromHex(tmp.BlockHash, &d.BlockHash)
+	if err != nil {
+		return err
+	}
+
+	var opaqueLeaves [][]byte
+	err = DecodeFromHex(tmp.Leaves, &opaqueLeaves)
+	if err != nil {
+		return err
+	}
+	for _, leaf := range opaqueLeaves {
+		var mmrLeaf MMRLeaf
+		err := Decode(leaf, &mmrLeaf)
+		if err != nil {
+			return err
+		}
+		d.Leaves = append(d.Leaves, mmrLeaf)
+	}
+	err = DecodeFromHex(tmp.Proof, &d.Proof)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 type MMRLeaf struct {
