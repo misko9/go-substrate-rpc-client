@@ -1,13 +1,12 @@
 package types
 
 import (
-	"github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 )
 
 type Proof struct {
 	Proof  []byte
-	Height types.Height
+	Height clienttypes.Height
 }
 
 type PacketInfo struct {
@@ -28,7 +27,7 @@ type PacketInfo struct {
 	// Opaque packet data
 	Data []byte `json:"data,omitempty"`
 	// Timeout height
-	TimeoutHeight types.Height `json:"timeout_height,omitempty"`
+	TimeoutHeight clienttypes.Height `json:"timeout_height,omitempty"`
 	// Timeout timestamp
 	TimeoutTimestamp uint64 `json:"timeout_timestamp,omitempty"`
 	// Packet acknowledgement
@@ -41,7 +40,7 @@ type ConnHandshakeProof struct {
 	// Trie proof for connection state, client state and consensus state
 	Proof []byte
 	// Proof height
-	Height types.Height
+	Height clienttypes.Height
 }
 
 type BlockNumberOrHash struct {

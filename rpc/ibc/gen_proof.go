@@ -9,8 +9,8 @@ import (
 func (i IBC) GenerateConnectionHandshakeProof(
 	ctx context.Context,
 	height uint32,
-	clientId string,
-	connId string,
+	clientID string,
+	connID string,
 ) (
 	types.ConnHandshakeProof,
 	error,
