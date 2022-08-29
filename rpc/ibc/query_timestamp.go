@@ -11,7 +11,6 @@ func (i IBC) QueryTimestamp(
 	uint64,
 	error,
 ) {
-
 	var res uint64
 	err := i.client.CallContext(ctx, &res, queryTimestampMethod)
 	if err != nil {

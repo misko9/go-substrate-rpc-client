@@ -15,7 +15,6 @@ func (i IBC) QueryClientStateResponse(
 	clienttypes.QueryClientStateResponse,
 	error,
 ) {
-
 	var res QueryClientStateResponse
 	err := i.client.CallContext(ctx, &res, queryClientStateMethod, height, srcClientID)
 	if err != nil {
@@ -76,7 +75,6 @@ func (i IBC) QueryClients(ctx context.Context) (
 	clienttypes.IdentifiedClientStates,
 	error,
 ) {
-
 	var res IdentifiedClientStates
 	err := i.client.CallContext(ctx, &res, queryClientsMethod)
 	if err != nil {
