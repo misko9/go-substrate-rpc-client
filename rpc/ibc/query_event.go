@@ -14,7 +14,7 @@ func (i IBC) QueryIbcEvents(
 	error,
 ) {
 	var res types.IBCEventsQueryResult
-	err := i.client.CallContext(ctx, &res, queryIbcEventsMethod, blockNumbers)
+	err := i.client.CallContext(ctx, &res, queryEventsMethod, blockNumbers)
 	if err != nil {
 		return res, err
 	}

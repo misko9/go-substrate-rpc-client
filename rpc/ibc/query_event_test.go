@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestQueryIBCEvents(t *testing.T) {
+func TestQueryEvents(t *testing.T) {
 	cl, err := client.NewSubstrateAPI(config.Default().RPCURL)
 	require.NoError(t, err)
 	events, err := cl.RPC.IBC.QueryIbcEvents(context.Background(), []types.BlockNumberOrHash{{Number: 1}, {Number: 2}})
@@ -20,7 +20,7 @@ func TestQueryIBCEvents(t *testing.T) {
 	require.Equal(t, map[string][]interface{}{}, events)
 }
 
-func TestQuerySampleIBCEvents(t *testing.T) {
+func TestQuerySampleEvents(t *testing.T) {
 	var result types.IBCEventsQueryResult
 	b, err := hex.DecodeString(sampleIBCEvents)
 	require.NoError(t, err)

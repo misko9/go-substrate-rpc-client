@@ -26,7 +26,7 @@ func (i IBC) QueryClientStateResponse(
 
 func (i IBC) QueryClientConsensusState(
 	ctx context.Context,
-	clientid string,
+	clientID string,
 	revisionHeight,
 	revisionNumber uint64,
 	latestConsensusState bool) (
@@ -36,7 +36,7 @@ func (i IBC) QueryClientConsensusState(
 	var res *clienttypes.QueryConsensusStateResponse
 	err := i.client.CallContext(ctx, &res,
 		queryClientConsensusStateMethod,
-		clientid,
+		clientID,
 		revisionHeight,
 		revisionNumber,
 		latestConsensusState)
