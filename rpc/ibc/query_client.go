@@ -15,7 +15,6 @@ func (i IBC) QueryClientStateResponse(
 	clienttypes.QueryClientStateResponse,
 	error,
 ) {
-
 	var res QueryClientStateResponse
 	err := i.client.CallContext(ctx, &res, queryClientStateMethod, height, srcClientID)
 	if err != nil {
@@ -26,7 +25,7 @@ func (i IBC) QueryClientStateResponse(
 
 func (i IBC) QueryClientConsensusState(
 	ctx context.Context,
-	clientid string,
+	clientID string,
 	revisionHeight,
 	revisionNumber uint64,
 	latestConsensusState bool) (
@@ -36,7 +35,7 @@ func (i IBC) QueryClientConsensusState(
 	var res *clienttypes.QueryConsensusStateResponse
 	err := i.client.CallContext(ctx, &res,
 		queryClientConsensusStateMethod,
-		clientid,
+		clientID,
 		revisionHeight,
 		revisionNumber,
 		latestConsensusState)
@@ -76,7 +75,6 @@ func (i IBC) QueryClients(ctx context.Context) (
 	clienttypes.IdentifiedClientStates,
 	error,
 ) {
-
 	var res IdentifiedClientStates
 	err := i.client.CallContext(ctx, &res, queryClientsMethod)
 	if err != nil {

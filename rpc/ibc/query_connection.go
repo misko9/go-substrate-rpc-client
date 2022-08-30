@@ -37,13 +37,13 @@ func (i IBC) QueryConnections(ctx context.Context) (
 func (i IBC) QueryConnectionsUsingClient(
 	ctx context.Context,
 	height int64,
-	clientid string,
+	clientID string,
 ) (
 	*conntypes.QueryConnectionsResponse,
 	error,
 ) {
 	var res *conntypes.QueryConnectionsResponse
-	err := i.client.CallContext(ctx, &res, queryConnectionUsingClientMethod, height, clientid)
+	err := i.client.CallContext(ctx, &res, queryConnectionUsingClientMethod, height, clientID)
 	if err != nil {
 		return &conntypes.QueryConnectionsResponse{}, err
 	}
