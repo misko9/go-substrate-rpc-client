@@ -53,3 +53,25 @@ func parseQueryClientStateResponse(csr QueryClientStateResponse) (clienttypes.Qu
 		ProofHeight: csr.ProofHeight,
 	}, nil
 }
+
+type QueryConsensusStateResponse struct {
+	// consensus state associated with the client identifier at the given height
+	ConsensusState *prototypes.Any `protobuf:"bytes,1,opt,name=consensus_state,json=consensusState,proto3" json:"consensus_state,omitempty"`
+	// merkle proof of existence
+	Proof []byte `protobuf:"bytes,2,opt,name=proof,proto3" json:"proof,omitempty"`
+	// height at which the proof was retrieved
+	ProofHeight clienttypes.Height `protobuf:"bytes,3,opt,name=proof_height,json=proofHeight,proto3" json:"proof_height"`
+}
+
+func parseQueryConsensusStateResponse(csr QueryConsensusStateResponse) (*clienttypes.QueryConsensusStateResponse, error) {
+	cs, err := parseAny(csr.ConsensusState)
+	if err != nil {
+		return &clienttypes.QueryConsensusStateResponse{}, err
+	}
+
+	return &clienttypes.QueryConsensusStateResponse{
+		ConsensusState: cs,
+		Proof:          csr.Proof,
+		ProofHeight:    csr.ProofHeight,
+	}, nil
+}

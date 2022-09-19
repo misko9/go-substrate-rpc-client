@@ -25,6 +25,7 @@ func (i IBC) QueryClientStateResponse(
 
 func (i IBC) QueryClientConsensusState(
 	ctx context.Context,
+	chainHeight uint32,
 	clientID string,
 	revisionHeight,
 	revisionNumber uint64,
@@ -32,9 +33,10 @@ func (i IBC) QueryClientConsensusState(
 	*clienttypes.QueryConsensusStateResponse,
 	error,
 ) {
-	var res *clienttypes.QueryConsensusStateResponse
+	var res QueryConsensusStateResponse
 	err := i.client.CallContext(ctx, &res,
 		queryClientConsensusStateMethod,
+		chainHeight,
 		clientID,
 		revisionHeight,
 		revisionNumber,
@@ -42,8 +44,9 @@ func (i IBC) QueryClientConsensusState(
 	if err != nil {
 		return &clienttypes.QueryConsensusStateResponse{}, err
 	}
-	return res, nil
+	return parseQueryConsensusStateResponse(res)
 }
+
 func (i IBC) QueryUpgradedClient(
 	ctx context.Context,
 	height int64,
@@ -83,17 +86,18 @@ func (i IBC) QueryClients(ctx context.Context) (
 	return parseIdentifiedClientStates(res)
 }
 
-func (i IBC) QueryNewlyCreatedClients(
+func (i IBC) QueryNewlyCreatedClient(
 	ctx context.Context,
-	blockHash types.H256,
+	blockHash types.Hash,
+	extHash types.Hash,
 ) (
-	[]clienttypes.IdentifiedClientState,
+	clienttypes.IdentifiedClientState,
 	error,
 ) {
-	var res []clienttypes.IdentifiedClientState
-	err := i.client.CallContext(ctx, &res, queryNewlyCreatedClientsMethod)
+	var res clienttypes.IdentifiedClientState
+	err := i.client.CallContext(ctx, &res, queryNewlyCreatedClientMethod, blockHash, extHash)
 	if err != nil {
-		return []clienttypes.IdentifiedClientState{}, err
+		return clienttypes.IdentifiedClientState{}, err
 	}
 	return res, nil
 }

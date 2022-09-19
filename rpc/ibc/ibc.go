@@ -26,7 +26,7 @@ const (
 	queryEventsMethod                      = "ibc_queryEvents"
 	queryLatestHeightMethod                = "ibc_queryLatestHeight"
 	queryNextSeqRecvMethod                 = "ibc_queryNextSeqRecv"
-	queryNewlyCreatedClientsMethod         = "ibc_queryNewlyCreatedClients"
+	queryNewlyCreatedClientMethod          = "ibc_queryNewlyCreatedClient"
 	queryPacketsMethod                     = "ibc_queryPackets"
 	queryPacketCommitmentsMethod           = "ibc_queryPacketCommitments"
 	queryPacketAcknowledgementsMethod      = "ibc_queryPacketAcknowledgements"

@@ -15,7 +15,7 @@ type GenerateMMRProofResponse struct {
 type GenerateMmrBatchProofResponse struct {
 	BlockHash H256
 	Leaves    []MMRLeaf
-	Proof     MmrBatchProof
+	Proof     MMRBatchProof
 }
 
 // UnmarshalJSON fills u with the JSON encoded byte array given by b
@@ -61,7 +61,7 @@ type MMRProof struct {
 }
 
 // MmrProof is a MMR proof
-type MmrBatchProof struct {
+type MMRBatchProof struct {
 	// The index of the leaf the proof is for.
 	LeafIndex []U64
 	// Number of leaves in MMR, when the proof was generated.
