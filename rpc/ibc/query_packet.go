@@ -178,7 +178,7 @@ func (i IBC) QueryPacketReceipt(
 	return res, nil
 }
 
-func (i IBC) QuerySendPacket(
+func (i IBC) QuerySendPackets(
 	ctx context.Context,
 	channelID,
 	portID string,
