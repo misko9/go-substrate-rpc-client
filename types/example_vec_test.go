@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"reflect"
 
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
 )
 
 func ExampleExampleVec_simple() {

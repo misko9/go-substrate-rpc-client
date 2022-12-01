@@ -21,6 +21,7 @@ import (
 
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 )
 
 // GetMetadata returns the metadata at the given block
@@ -42,7 +43,7 @@ func (s *state) getMetadata(blockHash *types.Hash) (*types.Metadata, error) {
 	}
 
 	var metadata types.Metadata
-	err = types.DecodeFromHex(res, &metadata)
+	err = codec.DecodeFromHex(res, &metadata)
 	if err != nil {
 		fmt.Println("getMetadata, DecodeFromHex, err", err)
 	}

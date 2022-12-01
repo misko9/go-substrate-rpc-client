@@ -27,14 +27,16 @@ import (
 	"testing"
 	"time"
 
-	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
-	mockClient "github.com/ComposableFi/go-substrate-rpc-client/v4/client/mocks"
-	mockChain "github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/chain/mocks"
-	mockState "github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/state/mocks"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpcmocksrv"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v4"
+	mockClient "github.com/centrifuge/go-substrate-rpc-client/v4/client/mocks"
+	mockChain "github.com/centrifuge/go-substrate-rpc-client/v4/rpc/chain/mocks"
+	mockState "github.com/centrifuge/go-substrate-rpc-client/v4/rpc/state/mocks"
+
+	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/rpcmocksrv"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -115,11 +117,11 @@ func TestClient_GetTestData(t *testing.T) {
 	defer ts.Close()
 
 	var metadata types.Metadata
-	err := types.DecodeFromHex(types.MetadataV14Data, &metadata)
+	err := codec.DecodeFromHex(types.MetadataV14Data, &metadata)
 	assert.EqualValues(t, metadata.Version, 14)
 	assert.Nil(t, err)
 
-	encodedMeta, err := types.Encode(metadata)
+	encodedMeta, err := codec.Encode(metadata)
 
 	assert.Nil(t, err)
 
@@ -534,7 +536,7 @@ func TestClient_GetTestData_StorageKeyCreationError(t *testing.T) {
 	defer ts.Close()
 
 	var metadata types.Metadata
-	err := types.DecodeFromHex(types.MetadataV14Data, &metadata)
+	err := codec.DecodeFromHex(types.MetadataV14Data, &metadata)
 	assert.EqualValues(t, metadata.Version, 14)
 	assert.Nil(t, err)
 
@@ -613,7 +615,7 @@ func TestClient_GetTestData_BlockHashError(t *testing.T) {
 	defer ts.Close()
 
 	var metadata types.Metadata
-	err := types.DecodeFromHex(types.MetadataV14Data, &metadata)
+	err := codec.DecodeFromHex(types.MetadataV14Data, &metadata)
 	assert.EqualValues(t, metadata.Version, 14)
 	assert.Nil(t, err)
 
@@ -694,7 +696,7 @@ func TestClient_GetTestData_StorageError(t *testing.T) {
 	defer ts.Close()
 
 	var metadata types.Metadata
-	err := types.DecodeFromHex(types.MetadataV14Data, &metadata)
+	err := codec.DecodeFromHex(types.MetadataV14Data, &metadata)
 	assert.EqualValues(t, metadata.Version, 14)
 	assert.Nil(t, err)
 

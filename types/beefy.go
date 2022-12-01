@@ -16,7 +16,10 @@
 
 package types
 
-import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+import (
+	"github.com/centrifuge/go-substrate-rpc-client/v4/scale"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+)
 
 type Payload struct {
 	ID    [2]byte
@@ -111,5 +114,127 @@ func (o *OptionBeefySignature) SetNone() {
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o OptionBeefySignature) Unwrap() (ok bool, value BeefySignature) {
-	return o.HasValue, o.value
+	return o.hasValue, o.value
+}
+
+// bits are packed into chunks of this size
+const containerBitSize = 8
+
+func (s *SignedCommitment) Decode(decoder scale.Decoder) error {
+	compact := CompactSignedCommitment{}
+
+	err := decoder.Decode(&compact)
+	if err != nil {
+		return err
+	}
+
+	var bits []byte
+
+	for _, block := range compact.SignaturesFrom {
+		for bit := 0; bit < containerBitSize; bit++ {
+			bits = append(bits, (block>>(containerBitSize-bit-1))&1)
+		}
+	}
+
+	bits = bits[0:compact.ValidatorSetLen]
+
+	var signatures []OptionBeefySignature
+	sigIndex := 0
+
+	for _, bit := range bits {
+		if bit == 1 {
+			signatures = append(signatures, NewOptionBeefySignature(compact.SignaturesCompact[sigIndex]))
+			sigIndex++
+		} else {
+			signatures = append(signatures, NewOptionBeefySignatureEmpty())
+		}
+	}
+
+	s.Commitment = compact.Commitment
+	s.Signatures = signatures
+
+	return nil
+}
+
+func (s SignedCommitment) Encode(encoder scale.Encoder) error {
+	var compact CompactSignedCommitment
+	var bits []byte
+	var signaturesFrom []byte
+	var signaturesCompact []BeefySignature
+
+	validatorSetLen := len(s.Signatures)
+
+	for _, optionSig := range s.Signatures {
+		if optionSig.IsSome() {
+			bits = append(bits, 1)
+			_, signature := optionSig.Unwrap()
+			signaturesCompact = append(signaturesCompact, signature)
+		} else {
+			bits = append(bits, 0)
+		}
+	}
+
+	excessBitsLen := containerBitSize - (validatorSetLen % containerBitSize)
+	bits = append(bits, make([]byte, excessBitsLen)...)
+
+	for _, chunk := range makeChunks(bits, containerBitSize) {
+		acc := chunk[0]
+		for i := 1; i < containerBitSize; i++ {
+			acc <<= 1
+			acc |= chunk[i]
+		}
+		signaturesFrom = append(signaturesFrom, acc)
+	}
+
+	compact.Commitment = s.Commitment
+	compact.SignaturesCompact = signaturesCompact
+	compact.SignaturesFrom = signaturesFrom
+	compact.ValidatorSetLen = uint32(validatorSetLen)
+
+	return encoder.Encode(compact)
+}
+
+func makeChunks(slice []byte, chunkSize int) [][]byte {
+	var chunks [][]byte
+	for i := 0; i < len(slice); i += chunkSize {
+		end := i + chunkSize
+
+		// necessary check to avoid slicing beyond
+		// slice capacity
+		if end > len(slice) {
+			end = len(slice)
+		}
+
+		chunks = append(chunks, slice[i:end])
+	}
+
+	return chunks
+}
+
+// UnmarshalText deserializes hex string into a SignedCommitment.
+// Used for decoding JSON-RPC subscription messages (beefy_subscribeJustifications)
+func (s *SignedCommitment) UnmarshalText(text []byte) error {
+	return codec.DecodeFromHex(string(text), s)
+}
+
+func (o OptionalSignedCommitment) Encode(encoder scale.Encoder) error {
+	return encoder.EncodeOption(o.hasValue, o.value)
+}
+
+func (o *OptionalSignedCommitment) Decode(decoder scale.Decoder) error {
+	return decoder.DecodeOption(&o.hasValue, &o.value)
+}
+
+func (o OptionalSignedCommitment) Unwrap() (ok bool, value SignedCommitment) {
+	return o.hasValue, o.value
+}
+
+func (o *OptionalSignedCommitment) SetSome(value SignedCommitment) {
+	o.hasValue = true
+	o.value = value
+}
+
+func (o *OptionalSignedCommitment) SetNone() {
+	o.hasValue = false
+	o.value = SignedCommitment{}
 }

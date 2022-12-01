@@ -21,10 +21,10 @@ import (
 	"testing"
 
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	fuzz "github.com/google/gofuzz"
-
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/signature"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
 	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	fuzz "github.com/google/gofuzz"
 	"github.com/stretchr/testify/assert"
 )
 

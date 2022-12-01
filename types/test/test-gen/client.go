@@ -26,7 +26,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 
 	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
 )
@@ -122,7 +124,7 @@ func (c *Client) getTestData(blockNumber int) (*TestData, error) {
 		return nil, fmt.Errorf("couldn't get latest metadata: %w", err)
 	}
 
-	encodedMetadata, err := types.Encode(meta)
+	encodedMetadata, err := codec.Encode(meta)
 
 	if err != nil {
 		return nil, fmt.Errorf("couldn't encode metadata: %w", err)

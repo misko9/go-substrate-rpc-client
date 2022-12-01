@@ -60,13 +60,13 @@ func (_m *Beefy) SubscribeJustifications() (*beefy.JustificationsSubscription, e
 	return r0, r1
 }
 
-type mockConstructorTestingTNewBeefy interface {
+type NewBeefyT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewBeefy creates a new instance of Beefy. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewBeefy(t mockConstructorTestingTNewBeefy) *Beefy {
+func NewBeefy(t NewBeefyT) *Beefy {
 	mock := &Beefy{}
 	mock.Mock.Test(t)
 

@@ -75,13 +75,13 @@ func (_m *MMR) GenerateProofLatest(leafIndex uint64) (types.GenerateMMRProofResp
 	return r0, r1
 }
 
-type mockConstructorTestingTNewMMR interface {
+type NewMMRT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewMMR creates a new instance of MMR. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewMMR(t mockConstructorTestingTNewMMR) *MMR {
+func NewMMR(t NewMMRT) *MMR {
 	mock := &MMR{}
 	mock.Mock.Test(t)
 

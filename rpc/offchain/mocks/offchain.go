@@ -50,13 +50,13 @@ func (_m *Offchain) LocalStorageSet(kind offchain.StorageKind, key []byte, value
 	return r0
 }
 
-type mockConstructorTestingTNewOffchain interface {
+type NewOffchainT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewOffchain creates a new instance of Offchain. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewOffchain(t mockConstructorTestingTNewOffchain) *Offchain {
+func NewOffchain(t NewOffchainT) *Offchain {
 	mock := &Offchain{}
 	mock.Mock.Test(t)
 

@@ -221,13 +221,13 @@ func (_m *Chain) SubscribeNewHeads() (*chain.NewHeadsSubscription, error) {
 	return r0, r1
 }
 
-type mockConstructorTestingTNewChain interface {
+type NewChainT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewChain creates a new instance of Chain. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewChain(t mockConstructorTestingTNewChain) *Chain {
+func NewChain(t NewChainT) *Chain {
 	mock := &Chain{}
 	mock.Mock.Test(t)
 

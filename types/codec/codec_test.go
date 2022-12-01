@@ -14,36 +14,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package types
+package codec
 
-import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+import (
+	"testing"
 
-type InstanceMetadata struct {
-	Deposit  U128
-	Data     Bytes
-	IsFrozen bool
-}
+	"github.com/stretchr/testify/assert"
+)
 
-func (i *InstanceMetadata) Decode(decoder scale.Decoder) error {
-	if err := decoder.Decode(&i.Deposit); err != nil {
-		return err
-	}
+func TestHexDecodeString(t *testing.T) {
+	s := HexEncodeToString([]byte{0, 128, 255})
+	assert.Equal(t, "0x0080ff", s)
 
-	if err := decoder.Decode(&i.Data); err != nil {
-		return err
-	}
+	b, err := HexDecodeString(s)
+	assert.NoError(t, err)
+	assert.Equal(t, []byte{0, 128, 255}, b)
 
-	return decoder.Decode(&i.IsFrozen)
-}
+	b, err = HexDecodeString("0xa")
+	assert.NoError(t, err)
+	assert.Equal(t, []byte{10}, b)
 
-func (i InstanceMetadata) Encode(encoder scale.Encoder) error {
-	if err := encoder.Encode(i.Deposit); err != nil {
-		return err
-	}
-
-	if err := encoder.Encode(i.Data); err != nil {
-		return err
-	}
-
-	return encoder.Encode(i.IsFrozen)
+	b, err = HexDecodeString("f")
+	assert.NoError(t, err)
+	assert.Equal(t, []byte{15}, b)
 }

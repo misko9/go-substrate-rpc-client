@@ -687,13 +687,13 @@ func (_m *State) SubscribeStorageRaw(keys []types.StorageKey) (*state.StorageSub
 	return r0, r1
 }
 
-type mockConstructorTestingTNewState interface {
+type NewStateT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewState creates a new instance of State. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewState(t mockConstructorTestingTNewState) *State {
+func NewState(t NewStateT) *State {
 	mock := &State{}
 	mock.Mock.Test(t)
 

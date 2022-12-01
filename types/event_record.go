@@ -268,8 +268,9 @@ type EventRecords struct {
 
 	Proxy_Announced        []EventProxyAnnounced        `test-gen-blockchain:"centrifuge-parachain"`
 	Proxy_AnonymousCreated []EventProxyAnonymousCreated `test-gen-blockchain:"centrifuge-parachain"`
-	Proxy_Added            []EventProxyAdded            `test-gen-blockchain:"centrifuge-parachain"`
+	Proxy_ProxyAdded       []EventProxyProxyAdded       `test-gen-blockchain:"centrifuge-parachain"`
 	Proxy_ProxyExecuted    []EventProxyProxyExecuted    `test-gen-blockchain:"centrifuge-parachain"`
+	Proxy_ProxyRemoved     []EventProxyProxyRemoved     `test-gen-blockchain:"centrifuge-parachain"`
 
 	Recovery_AccountRecovered  []EventRecoveryAccountRecovered `test-gen-skip:"true"`
 	Recovery_RecoveryClosed    []EventRecoveryClosed           `test-gen-skip:"true"`
@@ -377,6 +378,8 @@ type EventRecords struct {
 	TransactionStorage_Renewed      []EventTransactionStorageRenewed      `test-gen-skip:"true"`
 	TransactionStorage_ProofChecked []EventTransactionStorageProofChecked `test-gen-skip:"true"`
 
+	TransactionPayment_TransactionFeePaid []EventTransactionPaymentTransactionFeePaid `test-gen-blockchain:"westend"`
+
 	Treasury_Awarded  []EventTreasuryAwarded  `test-gen-blockchain:"altair"`
 	Treasury_Burnt    []EventTreasuryBurnt    `test-gen-blockchain:"altair"`
 	Treasury_Deposit  []EventTreasuryDeposit  `test-gen-blockchain:"altair"`
@@ -423,6 +426,9 @@ type EventRecords struct {
 
 	Vesting_VestingCompleted []EventVestingVestingCompleted `test-gen-blockchain:"centrifuge-parachain"`
 	Vesting_VestingUpdated   []EventVestingVestingUpdated   `test-gen-blockchain:"centrifuge-parachain"`
+
+	VoterList_Rebagged     []EventVoterListRebagged     `test-gen-blockchain:"polkadot"`
+	VoterList_ScoreUpdated []EventVoterListScoreUpdated `test-gen-blockchain:"polkadot"`
 
 	Whitelist_CallWhitelisted           []EventWhitelistCallWhitelisted        `test-gen-skip:"true"`
 	Whitelist_WhitelistedCallRemoved    []EventWhitelistWhitelistedCallRemoved `test-gen-skip:"true"`

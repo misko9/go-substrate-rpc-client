@@ -18,14 +18,14 @@ package types
 
 import "github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
 
-type InstanceDetails struct {
+type ItemDetails struct {
 	Owner    AccountID
 	Approved OptionAccountID
 	IsFrozen bool
 	Deposit  U128
 }
 
-func (i *InstanceDetails) Decode(decoder scale.Decoder) error {
+func (i *ItemDetails) Decode(decoder scale.Decoder) error {
 	if err := decoder.Decode(&i.Owner); err != nil {
 		return err
 	}
@@ -39,7 +39,7 @@ func (i *InstanceDetails) Decode(decoder scale.Decoder) error {
 	return decoder.Decode(&i.Deposit)
 }
 
-func (i InstanceDetails) Encode(encoder scale.Encoder) error {
+func (i ItemDetails) Encode(encoder scale.Encoder) error {
 	if err := encoder.Encode(i.Owner); err != nil {
 		return err
 	}

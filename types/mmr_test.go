@@ -21,6 +21,7 @@ import (
 	"testing"
 
 	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	. "github.com/centrifuge/go-substrate-rpc-client/v4/types/test_utils"
 )
 
 func TestGenerateMMRProofResponse_Unmarshal(t *testing.T) {
@@ -36,5 +37,5 @@ func TestGenerateMMRProofResponse_Unmarshal(t *testing.T) {
 	var unmarshalled GenerateMMRProofResponse
 	json.Unmarshal(marshalled, &unmarshalled)
 
-	assertEqual(t, unmarshalled, expected)
+	AssertEqual(t, unmarshalled, expected)
 }

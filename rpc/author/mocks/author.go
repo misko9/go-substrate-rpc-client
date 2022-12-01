@@ -83,13 +83,13 @@ func (_m *Author) SubmitExtrinsic(xt types.Extrinsic) (types.Hash, error) {
 	return r0, r1
 }
 
-type mockConstructorTestingTNewAuthor interface {
+type NewAuthorT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewAuthor creates a new instance of Author. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewAuthor(t mockConstructorTestingTNewAuthor) *Author {
+func NewAuthor(t NewAuthorT) *Author {
 	mock := &Author{}
 	mock.Mock.Test(t)
 

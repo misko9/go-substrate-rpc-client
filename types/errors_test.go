@@ -19,9 +19,10 @@ package types_test
 import (
 	"testing"
 
+	. "github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	. "github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/test_utils"
 	fuzz "github.com/google/gofuzz"
-
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 )
 
 var (
@@ -38,7 +39,7 @@ var (
 		IsModule: true,
 		ModuleError: ModuleError{
 			Index: 4,
-			Error: 5,
+			Error: [4]U8{5, 0, 0, 0},
 		},
 	}
 	testDispatchError5 = DispatchError{
@@ -69,8 +70,8 @@ var (
 		},
 	}
 
-	tokenErrorFuzzOpts = []fuzzOpt{
-		withFuzzFuncs(func(t *TokenError, c fuzz.Continue) {
+	tokenErrorFuzzOpts = []FuzzOpt{
+		WithFuzzFuncs(func(t *TokenError, c fuzz.Continue) {
 			switch c.Intn(7) {
 			case 0:
 				t.IsNoFunds = true
@@ -90,8 +91,8 @@ var (
 		}),
 	}
 
-	arithmeticErrorFuzzOpts = []fuzzOpt{
-		withFuzzFuncs(func(a *ArithmeticError, c fuzz.Continue) {
+	arithmeticErrorFuzzOpts = []FuzzOpt{
+		WithFuzzFuncs(func(a *ArithmeticError, c fuzz.Continue) {
 			switch c.Intn(3) {
 			case 0:
 				a.IsUnderflow = true
@@ -103,20 +104,20 @@ var (
 		}),
 	}
 
-	transactionalErrorFuzzOpts = []fuzzOpt{
-		withFuzzFuncs(func(t *TransactionalError, c fuzz.Continue) {
+	transactionalErrorFuzzOpts = []FuzzOpt{
+		WithFuzzFuncs(func(t *TransactionalError, c fuzz.Continue) {
 			r := c.RandBool()
 			t.IsLimitReached = r
 			t.IsNoLayer = !r
 		}),
 	}
 
-	dispatchErrorFuzzOpts = combineFuzzOpts(
+	dispatchErrorFuzzOpts = CombineFuzzOpts(
 		tokenErrorFuzzOpts,
 		arithmeticErrorFuzzOpts,
 		transactionalErrorFuzzOpts,
-		[]fuzzOpt{
-			withFuzzFuncs(func(d *DispatchError, c fuzz.Continue) {
+		[]FuzzOpt{
+			WithFuzzFuncs(func(d *DispatchError, c fuzz.Continue) {
 				switch c.Intn(10) {
 				case 0:
 					d.IsOther = true
@@ -153,17 +154,17 @@ var (
 )
 
 func TestDispatchError_EncodeDecode(t *testing.T) {
-	assertRoundTripFuzz[DispatchError](t, 1000, dispatchErrorFuzzOpts...)
-	assertDecodeNilData[DispatchError](t)
-	assertEncodeEmptyObj[DispatchError](t, 0)
+	AssertRoundTripFuzz[DispatchError](t, 1000, dispatchErrorFuzzOpts...)
+	AssertDecodeNilData[DispatchError](t)
+	AssertEncodeEmptyObj[DispatchError](t, 0)
 }
 
 func TestDispatchError_Encode(t *testing.T) {
-	assertEncode(t, []encodingAssert{
+	AssertEncode(t, []EncodingAssert{
 		{testDispatchError1, MustHexDecodeString("0x00")},
 		{testDispatchError2, MustHexDecodeString("0x01")},
 		{testDispatchError3, MustHexDecodeString("0x02")},
-		{testDispatchError4, MustHexDecodeString("0x030405")},
+		{testDispatchError4, MustHexDecodeString("0x030405000000")},
 		{testDispatchError5, MustHexDecodeString("0x04")},
 		{testDispatchError6, MustHexDecodeString("0x05")},
 		{testDispatchError7, MustHexDecodeString("0x06")},
@@ -174,11 +175,11 @@ func TestDispatchError_Encode(t *testing.T) {
 }
 
 func TestDispatchError_Decode(t *testing.T) {
-	assertDecode(t, []decodingAssert{
+	AssertDecode(t, []DecodingAssert{
 		{MustHexDecodeString("0x00"), testDispatchError1},
 		{MustHexDecodeString("0x01"), testDispatchError2},
 		{MustHexDecodeString("0x02"), testDispatchError3},
-		{MustHexDecodeString("0x030405"), testDispatchError4},
+		{MustHexDecodeString("0x030405000000"), testDispatchError4},
 		{MustHexDecodeString("0x04"), testDispatchError5},
 		{MustHexDecodeString("0x05"), testDispatchError6},
 		{MustHexDecodeString("0x06"), testDispatchError7},

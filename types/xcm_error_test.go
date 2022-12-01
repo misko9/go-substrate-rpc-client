@@ -19,14 +19,14 @@ package types_test
 import (
 	"testing"
 
+	. "github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/test_utils"
 	fuzz "github.com/google/gofuzz"
-
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 )
 
 var (
-	xcmErrorFuzzOpts = []fuzzOpt{
-		withFuzzFuncs(func(x *XCMError, c fuzz.Continue) {
+	xcmErrorFuzzOpts = []FuzzOpt{
+		WithFuzzFuncs(func(x *XCMError, c fuzz.Continue) {
 			switch c.Intn(26) {
 			case 0:
 				x.IsOverflow = true
@@ -48,8 +48,6 @@ var (
 				x.IsAssetNotFound = true
 			case 9:
 				x.IsFailedToTransactAsset = true
-
-				c.Fuzz(&x.FailedToTransactAsset)
 			case 10:
 				x.IsNotWithdrawable = true
 			case 11:
@@ -94,7 +92,7 @@ var (
 )
 
 func TestXCMError_EncodeDecode(t *testing.T) {
-	assertRoundTripFuzz[XCMError](t, 1000, xcmErrorFuzzOpts...)
-	assertDecodeNilData[XCMError](t)
-	assertEncodeEmptyObj[XCMError](t, 0)
+	AssertRoundTripFuzz[XCMError](t, 1000, xcmErrorFuzzOpts...)
+	AssertDecodeNilData[XCMError](t)
+	AssertEncodeEmptyObj[XCMError](t, 0)
 }

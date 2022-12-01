@@ -162,13 +162,13 @@ func (_m *System) Version() (types.Text, error) {
 	return r0, r1
 }
 
-type mockConstructorTestingTNewSystem interface {
+type NewSystemT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewSystem creates a new instance of System. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewSystem(t mockConstructorTestingTNewSystem) *System {
+func NewSystem(t NewSystemT) *System {
 	mock := &System{}
 	mock.Mock.Test(t)
 

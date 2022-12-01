@@ -48,6 +48,11 @@ func (_m *Client) CallContext(ctx context.Context, result interface{}, method st
 	return r0
 }
 
+// Close provides a mock function with given fields:
+func (_m *Client) Close() {
+	_m.Called()
+}
+
 // Subscribe provides a mock function with given fields: ctx, namespace, subscribeMethodSuffix, unsubscribeMethodSuffix, notificationMethodSuffix, channel, args
 func (_m *Client) Subscribe(ctx context.Context, namespace string, subscribeMethodSuffix string, unsubscribeMethodSuffix string, notificationMethodSuffix string, channel interface{}, args ...interface{}) (*rpc.ClientSubscription, error) {
 	var _ca []interface{}
@@ -88,13 +93,13 @@ func (_m *Client) URL() string {
 	return r0
 }
 
-type mockConstructorTestingTNewClient interface {
+type NewClientT interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewClient creates a new instance of Client. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewClient(t mockConstructorTestingTNewClient) *Client {
+func NewClient(t NewClientT) *Client {
 	mock := &Client{}
 	mock.Mock.Test(t)
 
