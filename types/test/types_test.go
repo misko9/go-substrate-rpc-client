@@ -25,7 +25,7 @@ import (
 
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 )
 
 //go:generate go run ./test-gen test_data meta_bytes storage_bytes

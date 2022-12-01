@@ -6,6 +6,7 @@ import (
 
 	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
 	"github.com/stretchr/testify/require"
 )
 
@@ -23,7 +24,7 @@ func TestVersionedFinalityProof_Decoding(t *testing.T) {
 		if bytes.Equal(v.ConsensusEngineID[:], []byte("BEEF")) {
 			versionedFinalityProof := &types.VersionedFinalityProof{}
 
-			err = types.Decode(v.EncodedJustification, versionedFinalityProof)
+			err = codec.Decode(v.EncodedJustification, versionedFinalityProof)
 			require.NoError(t, err)
 			t.Logf("%v", versionedFinalityProof.AsCompactSignedCommitment.Unpack())
 		}

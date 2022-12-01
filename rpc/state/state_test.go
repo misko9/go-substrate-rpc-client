@@ -24,7 +24,7 @@ import (
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpcmocksrv"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
 )
 
 var testState State
@@ -146,17 +146,6 @@ func (s *MockSrv) QueryStorage(keys []string, startBlock string, block *string) 
 	}
 	if startBlock != "0xdd1816b6f6889f46e23b0d6750bc441af9dad0fda8bae90677c1708d01035fbe" {
 		panic("startBlock must be 0xdd1816b6f6889f46e23b0d6750bc441af9dad0fda8bae90677c1708d01035fbe in tests")
-	}
-
-	return mockSrv.storageChangeSets
-}
-
-func (s *MockSrv) QueryStorageAt(keys []string, hash *string) []types.StorageChangeSet {
-	if len(keys) != 1 {
-		panic("keys need to have len of 1 in tests")
-	}
-	if keys[0] != mockSrv.storageKeyHex {
-		panic("key not found")
 	}
 
 	return mockSrv.storageChangeSets

@@ -17,6 +17,8 @@
 package gsrpc
 
 import (
+	"fmt"
+
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc"
 )
@@ -29,12 +31,12 @@ type SubstrateAPI struct {
 func NewSubstrateAPI(url string) (*SubstrateAPI, error) {
 	cl, err := client.Connect(url)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to connect to substrate node: %w", err)
 	}
 
 	newRPC, err := rpc.NewRPC(cl)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed create new RPC: %w", err)
 	}
 
 	return &SubstrateAPI{

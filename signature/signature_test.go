@@ -19,7 +19,10 @@ package signature_test
 import (
 	"testing"
 
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/signature"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -107,7 +110,7 @@ func TestDecodeSubstrateMessage(t *testing.T) {
 	compactCommitment := types.CompactSignedCommitment{}
 
 	// attempt to decode the SignedCommitments
-	err := types.DecodeFromHex(hex, &compactCommitment)
+	err := codec.DecodeFromHex(hex, &compactCommitment)
 	require.NoError(t, err)
 
 	signedCommitment := compactCommitment.Unpack()
@@ -117,7 +120,7 @@ func TestDecodeSubstrateMessage(t *testing.T) {
 	for _, v := range signedCommitment.Signatures {
 		if v.HasValue {
 			_, sig := v.Unwrap()
-			t.Logf("SIGNATURE %#v \n", types.HexEncodeToString(sig[:]))
+			t.Logf("SIGNATURE %#v \n", codec.HexEncodeToString(sig[:]))
 
 		} else {
 			t.Logf("NONE\n")

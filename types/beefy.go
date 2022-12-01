@@ -17,18 +17,18 @@
 package types
 
 import (
-	"github.com/centrifuge/go-substrate-rpc-client/v4/scale"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
 )
 
-type Payload struct {
-	ID    [2]byte
-	Value []byte
+type PayloadItem struct {
+	ID   [2]byte
+	Data []byte
 }
 
 // Commitment is a beefy commitment
 type Commitment struct {
-	Payload        []Payload
+	Payload        []PayloadItem
 	BlockNumber    U32
 	ValidatorSetID U64
 }
@@ -37,6 +37,11 @@ type Commitment struct {
 type SignedCommitment struct {
 	Commitment Commitment
 	Signatures []OptionBeefySignature
+}
+
+type OptionalSignedCommitment struct {
+	option
+	value SignedCommitment
 }
 
 type CompactSignedCommitment struct {
@@ -114,7 +119,7 @@ func (o *OptionBeefySignature) SetNone() {
 
 // Unwrap returns a flag that indicates whether a value is present and the stored value
 func (o OptionBeefySignature) Unwrap() (ok bool, value BeefySignature) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 // bits are packed into chunks of this size
@@ -218,23 +223,23 @@ func (s *SignedCommitment) UnmarshalText(text []byte) error {
 }
 
 func (o OptionalSignedCommitment) Encode(encoder scale.Encoder) error {
-	return encoder.EncodeOption(o.hasValue, o.value)
+	return encoder.EncodeOption(o.HasValue, o.value)
 }
 
 func (o *OptionalSignedCommitment) Decode(decoder scale.Decoder) error {
-	return decoder.DecodeOption(&o.hasValue, &o.value)
+	return decoder.DecodeOption(&o.HasValue, &o.value)
 }
 
 func (o OptionalSignedCommitment) Unwrap() (ok bool, value SignedCommitment) {
-	return o.hasValue, o.value
+	return o.HasValue, o.value
 }
 
 func (o *OptionalSignedCommitment) SetSome(value SignedCommitment) {
-	o.hasValue = true
+	o.HasValue = true
 	o.value = value
 }
 
 func (o *OptionalSignedCommitment) SetNone() {
-	o.hasValue = false
+	o.HasValue = false
 	o.value = SignedCommitment{}
 }

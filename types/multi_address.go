@@ -18,7 +18,7 @@ package types
 
 import (
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
 )
 
 type MultiAddress struct {

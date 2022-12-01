@@ -1,14 +1,19 @@
 package types_test
 
 import (
+	"fmt"
 	"testing"
 
-	. "github.com/centrifuge/go-substrate-rpc-client/v4/types"
-	. "github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
-	. "github.com/centrifuge/go-substrate-rpc-client/v4/types/test_utils"
+	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/test_utils"
 	fuzz "github.com/google/gofuzz"
 	"github.com/stretchr/testify/assert"
 )
+
+var sig1 = [65]byte{85, 132, 85, 173, 129, 39, 157, 240, 121, 92, 201, 133, 88, 14, 79, 183, 93, 114, 217, 72, 209, 16, 123, 42, 200, 10, 9, 171, 237, 77, 168, 72, 12, 116, 108, 195, 33, 242, 49, 154, 94, 153, 168, 48, 227, 20, 209, 13, 211, 205, 104, 206, 61, 192, 195, 60, 134, 233, 155, 203, 120, 22, 249, 186, 1}
+var sig2 = [65]byte{45, 110, 31, 129, 5, 195, 55, 168, 108, 221, 154, 170, 205, 196, 150, 87, 127, 61, 184, 197, 94, 249, 230, 253, 72, 242, 197, 192, 90, 34, 116, 112, 116, 145, 99, 93, 139, 163, 223, 100, 243, 36, 87, 91, 123, 42, 52, 72, 123, 202, 35, 36, 182, 160, 4, 99, 149, 167, 22, 129, 190, 61, 12, 42, 0}
 
 func TestBeefySignature(t *testing.T) {
 	empty := types.NewOptionBeefySignatureEmpty()
