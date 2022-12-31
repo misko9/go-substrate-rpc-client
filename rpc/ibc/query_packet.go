@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	chantypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
+	chantypes "github.com/cosmos/ibc-go/v6/modules/core/04-channel/types"
 )
 
 func (i IBC) QueryAcknowledgements(

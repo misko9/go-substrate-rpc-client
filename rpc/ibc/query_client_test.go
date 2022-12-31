@@ -6,7 +6,7 @@ import (
 
 	client "github.com/ComposableFi/go-substrate-rpc-client/v4"
 	"github.com/ComposableFi/go-substrate-rpc-client/v4/config"
-	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
+	clienttypes "github.com/cosmos/ibc-go/v6/modules/core/02-client/types"
 	"github.com/stretchr/testify/require"
 )
 
