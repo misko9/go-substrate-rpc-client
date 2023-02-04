@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 )
 
 // StorageChangeSet contains changes from storage subscriptions

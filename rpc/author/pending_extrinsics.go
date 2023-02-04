@@ -17,8 +17,8 @@
 package author
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 )
 
 // PendingExtrinsics returns all pending extrinsics, potentially grouped by sender

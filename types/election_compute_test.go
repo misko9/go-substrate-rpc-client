@@ -20,10 +20,10 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/test_utils"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
+	. "github.com/misko9/go-substrate-rpc-client/v4/types"
+	. "github.com/misko9/go-substrate-rpc-client/v4/types/codec"
+	. "github.com/misko9/go-substrate-rpc-client/v4/types/test_utils"
 	fuzz "github.com/google/gofuzz"
 	"github.com/stretchr/testify/assert"
 )

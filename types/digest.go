@@ -19,7 +19,7 @@ package types
 import (
 	"encoding/json"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 )
 
 // Digest contains logs

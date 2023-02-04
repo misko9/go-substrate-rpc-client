@@ -19,8 +19,8 @@ package gsrpc
 import (
 	"fmt"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc"
 )
 
 type SubstrateAPI struct {

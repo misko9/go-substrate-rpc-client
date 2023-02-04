@@ -17,16 +17,16 @@
 package rpc
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/author"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/beefy"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/chain"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/ibc"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/mmr"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/offchain"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/state"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/system"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/author"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/beefy"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/chain"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/ibc"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/mmr"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/offchain"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/state"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/system"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 )
 
 type RPC struct {

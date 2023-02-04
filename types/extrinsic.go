@@ -24,9 +24,9 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/signature"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/signature"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 )
 
 const (

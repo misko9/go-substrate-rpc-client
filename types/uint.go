@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
 )
 
 // U8 is an unsigned 8-bit integer

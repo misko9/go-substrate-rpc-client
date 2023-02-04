@@ -17,8 +17,8 @@
 package mmr
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 )
 
 // GenerateProof retrieves a MMR proof and leaf for the specified leave index, at the given blockHash (useful to query a

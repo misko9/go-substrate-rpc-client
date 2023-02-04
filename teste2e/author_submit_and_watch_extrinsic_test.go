@@ -21,10 +21,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/author"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/signature"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc/author"
+	"github.com/misko9/go-substrate-rpc-client/v4/signature"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 	"github.com/stretchr/testify/assert"
 )
 

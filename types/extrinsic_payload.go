@@ -19,9 +19,9 @@ package types
 import (
 	"fmt"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/signature"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/signature"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 )
 
 // ExtrinsicPayloadV3 is a signing payload for an Extrinsic. For the final encoding, it is variable length based on

@@ -22,8 +22,8 @@ import (
 	"hash"
 	"strings"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/xxhash"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/xxhash"
 	"golang.org/x/crypto/blake2b"
 )
 

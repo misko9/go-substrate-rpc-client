@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/xxhash"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/xxhash"
 )
 
 // StorageKey represents typically hashed storage keys of the system.

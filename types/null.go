@@ -17,7 +17,7 @@
 package types
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
 )
 
 // Null is a type that does not contain anything (apart from null)

@@ -27,16 +27,16 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 
-	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
-	mockClient "github.com/ComposableFi/go-substrate-rpc-client/v4/client/mocks"
-	mockChain "github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/chain/mocks"
-	mockState "github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/state/mocks"
+	gsrpc "github.com/misko9/go-substrate-rpc-client/v4"
+	mockClient "github.com/misko9/go-substrate-rpc-client/v4/client/mocks"
+	mockChain "github.com/misko9/go-substrate-rpc-client/v4/rpc/chain/mocks"
+	mockState "github.com/misko9/go-substrate-rpc-client/v4/rpc/state/mocks"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpc"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/rpcmocksrv"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpc"
+	"github.com/misko9/go-substrate-rpc-client/v4/rpcmocksrv"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 	"github.com/stretchr/testify/assert"
 )
 

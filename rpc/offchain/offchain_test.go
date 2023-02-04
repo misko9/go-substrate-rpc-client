@@ -20,8 +20,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/config"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/config"
 )
 
 var testOffchain Offchain

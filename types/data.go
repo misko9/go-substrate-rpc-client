@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
 )
 
 // Data is a raw data structure, containing raw bytes that are not decoded/encoded (without any length encoding).

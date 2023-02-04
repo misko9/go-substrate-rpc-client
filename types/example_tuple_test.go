@@ -19,8 +19,8 @@ package types_test
 import (
 	"fmt"
 
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	. "github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	. "github.com/misko9/go-substrate-rpc-client/v4/types"
+	. "github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 	"golang.org/x/crypto/blake2b"
 )
 

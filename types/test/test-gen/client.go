@@ -26,11 +26,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 
-	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
+	gsrpc "github.com/misko9/go-substrate-rpc-client/v4"
 )
 
 type ClientOpts struct {

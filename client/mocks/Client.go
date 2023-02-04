@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	rpc "github.com/ComposableFi/go-substrate-rpc-client/v4/gethrpc"
+	rpc "github.com/misko9/go-substrate-rpc-client/v4/gethrpc"
 	mock "github.com/stretchr/testify/mock"
 )
 

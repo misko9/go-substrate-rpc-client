@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"testing"
 
-	gsrpc "github.com/ComposableFi/go-substrate-rpc-client/v4"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/config"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	gsrpc "github.com/misko9/go-substrate-rpc-client/v4"
+	"github.com/misko9/go-substrate-rpc-client/v4/config"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 	"github.com/stretchr/testify/assert"
 )
 

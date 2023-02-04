@@ -17,8 +17,8 @@
 package state
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 )
 
 // GetRuntimeVersion returns the runtime version at the given block

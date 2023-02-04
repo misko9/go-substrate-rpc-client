@@ -17,7 +17,7 @@
 package system
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 )
 
 // Properties retrieves a custom set of properties as a JSON object, defined in the chain spec

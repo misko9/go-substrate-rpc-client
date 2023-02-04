@@ -21,8 +21,8 @@ import (
 	"hash"
 	"strings"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/xxhash"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/xxhash"
 )
 
 const MagicNumber uint32 = 0x6174656d

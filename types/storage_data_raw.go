@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
 )
 
 // StorageDataRaw contains raw bytes that are not decoded/encoded.

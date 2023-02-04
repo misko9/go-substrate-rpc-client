@@ -1,4 +1,4 @@
-module github.com/ComposableFi/go-substrate-rpc-client/v4
+module github.com/misko9/go-substrate-rpc-client/v4
 
 go 1.18
 

@@ -22,7 +22,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 

@@ -22,10 +22,10 @@ import (
 	"context"
 	"log"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/config"
-	gethrpc "github.com/ComposableFi/go-substrate-rpc-client/v4/gethrpc"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types/codec"
+	"github.com/misko9/go-substrate-rpc-client/v4/config"
+	gethrpc "github.com/misko9/go-substrate-rpc-client/v4/gethrpc"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/types/codec"
 )
 
 //go:generate mockery --name Client

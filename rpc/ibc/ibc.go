@@ -1,7 +1,7 @@
 package ibc
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
 	sdktypes "github.com/cosmos/cosmos-sdk/codec/types"
 	prototypes "github.com/gogo/protobuf/types"
 )

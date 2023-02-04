@@ -3,8 +3,8 @@
 package mocks
 
 import (
-	state "github.com/ComposableFi/go-substrate-rpc-client/v4/rpc/state"
-	types "github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	state "github.com/misko9/go-substrate-rpc-client/v4/rpc/state"
+	types "github.com/misko9/go-substrate-rpc-client/v4/types"
 	mock "github.com/stretchr/testify/mock"
 )
 

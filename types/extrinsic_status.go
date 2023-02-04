@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/scale"
+	"github.com/misko9/go-substrate-rpc-client/v4/scale"
 )
 
 // ExtrinsicStatus is an enum containing the result of an extrinsic submission

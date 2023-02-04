@@ -17,8 +17,8 @@
 package state
 
 import (
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/client"
-	"github.com/ComposableFi/go-substrate-rpc-client/v4/types"
+	"github.com/misko9/go-substrate-rpc-client/v4/client"
+	"github.com/misko9/go-substrate-rpc-client/v4/types"
 )
 
 // QueryStorage queries historical storage entries (by key) starting from a start block until an end block
