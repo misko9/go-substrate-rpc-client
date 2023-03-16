@@ -8,15 +8,15 @@ import (
 
 func (i IBC) QueryBalanceWithAddress(
 	ctx context.Context,
-	addr []byte,
+	addr string,
 ) (
-	sdk.Coins,
+	sdk.Coin,
 	error,
 ) {
-	var res sdk.Coins
+	var res sdk.Coin
 	err := i.client.CallContext(ctx, &res, queryBalanceWithAddressMethod, addr)
 	if err != nil {
-		return sdk.Coins{}, err
+		return sdk.Coin{}, err
 	}
 	return res, nil
 }
