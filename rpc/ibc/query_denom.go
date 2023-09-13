@@ -3,7 +3,7 @@ package ibc
 import (
 	"context"
 
-	transfertypes "github.com/cosmos/ibc-go/v7/modules/apps/transfer/types"
+	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 )
 
 func (i IBC) QueryDenomTrace(

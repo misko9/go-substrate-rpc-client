@@ -7,8 +7,8 @@ toolchain go1.21.0
 require (
 	github.com/ComposableFi/go-subkey/v2 v2.0.0-tm03420
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce
-	github.com/cosmos/cosmos-sdk v0.50.0-rc.0.0.20230819070346-e8164be94954
-	github.com/cosmos/ibc-go/v7 v7.0.0-20230824131743-d0ab8285e9f0
+	github.com/cosmos/cosmos-sdk v0.50.0-rc.0.0.20230905141004-6a9777fff287
+	github.com/cosmos/ibc-go/v8 v8.0.0-20230906115913-46ee5f92e1af
 	github.com/davecgh/go-spew v1.1.1
 	github.com/deckarep/golang-set v1.8.0
 	github.com/ethereum/go-ethereum v1.10.20
@@ -28,9 +28,9 @@ require (
 	cosmossdk.io/core v0.10.0 // indirect
 	cosmossdk.io/depinject v1.0.0-alpha.4 // indirect
 	cosmossdk.io/errors v1.0.0 // indirect
-	cosmossdk.io/log v1.2.0 // indirect
-	cosmossdk.io/math v1.0.1 // indirect
-	cosmossdk.io/store v1.0.0-alpha.1.0.20230728080422-54ed7dab3982 // indirect
+	cosmossdk.io/log v1.2.1 // indirect
+	cosmossdk.io/math v1.1.2 // indirect
+	cosmossdk.io/store v1.0.0-rc.0 // indirect
 	cosmossdk.io/x/tx v0.9.1 // indirect
 	cosmossdk.io/x/upgrade v0.0.0-20230818115413-c402c51a1508 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
@@ -58,8 +58,8 @@ require (
 	github.com/cosmos/go-bip39 v1.0.0 // indirect
 	github.com/cosmos/gogogateway v1.2.0 // indirect
 	github.com/cosmos/gogoproto v1.4.11 // indirect
-	github.com/cosmos/iavl v1.0.0-beta.2 // indirect
-	github.com/cosmos/ibc-go/modules/capability v1.0.0-rc3 // indirect
+	github.com/cosmos/iavl v1.0.0-rc.1 // indirect
+	github.com/cosmos/ibc-go/modules/capability v1.0.0-rc5 // indirect
 	github.com/cosmos/ics23/go v0.10.0 // indirect
 	github.com/cosmos/ledger-cosmos-go v0.13.0 // indirect
 	github.com/danieljoos/wincred v1.1.2 // indirect
@@ -100,7 +100,7 @@ require (
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
 	github.com/hashicorp/go-metrics v0.5.1 // indirect
 	github.com/hashicorp/go-plugin v1.4.10 // indirect
-	github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d // indirect
+	github.com/hashicorp/golang-lru v1.0.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/hdevalence/ed25519consensus v0.1.0 // indirect

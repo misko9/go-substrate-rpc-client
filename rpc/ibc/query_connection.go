@@ -3,7 +3,7 @@ package ibc
 import (
 	"context"
 
-	conntypes "github.com/cosmos/ibc-go/v7/modules/core/03-connection/types"
+	conntypes "github.com/cosmos/ibc-go/v8/modules/core/03-connection/types"
 )
 
 func (i IBC) QueryConnection(
