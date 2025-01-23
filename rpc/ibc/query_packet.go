@@ -3,8 +3,8 @@ package ibc
 import (
 	"context"
 
+	chantypes "github.com/cosmos/ibc-go/v9/modules/core/04-channel/types"
 	"github.com/misko9/go-substrate-rpc-client/v4/types"
-	chantypes "github.com/cosmos/ibc-go/v8/modules/core/04-channel/types"
 )
 
 func (i IBC) QueryAcknowledgements(
